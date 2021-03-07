@@ -1,0 +1,675 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Metal Data</title>
+	<meta name="description" content="Documentation for Metal Data">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Metal Data</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>Metal Data</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>#Metal Data
+				Typescript REST API Client Library</p>
+				<p>##Driver</p>
+				<p><strong>Exambple</strong></p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
+</code></pre>
+				<p>##Origin</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">origin</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
+</code></pre>
+				<p><strong>Multiple Origin</strong></p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">userAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">projectAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;project-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3001&#039;</span><span style="color: #000000"> });</span>
+</code></pre>
+				<p>##Collection</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalCollection</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">; </span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalData</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">; </span>
+
+<span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">User</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalData</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">first_name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">last_name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">age</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">userAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">users</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalCollection</span><span style="color: #000000">&lt;</span><span style="color: #267F99">User</span><span style="color: #000000">&gt;(</span><span style="color: #001080">userAPI</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user&#039;</span><span style="color: #000000">, </span><span style="color: #001080">endpoint:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;users&#039;</span><span style="color: #000000"> });</span>
+
+<span style="color: #008000">// List all users.</span>
+<span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">().</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">items</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">items</span><span style="color: #000000">.</span><span style="color: #795E26">forEach</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">));</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// List with filters.</span>
+<span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">age:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">orderBy:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">age:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;desc&#039;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// Get single record.</span>
+<span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">findOne</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;9892394888&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">));</span>
+</code></pre>
+				<p>##Query
+					A <code>.find()</code> method is a simple one-way method to perform a listing of a Collection and will returns a plain array.
+				While using <code>.query()</code>, it will returns a <strong>Query</strong> object so we can re-use the filters and caching. </p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adults</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">age:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+<span style="color: #001080">adults</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">().</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">records</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">records</span><span style="color: #000000">.</span><span style="color: #795E26">forEach</span><span style="color: #000000">(</span><span style="color: #001080">record</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">record</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">));</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>Query will store the fetched data into the <code>records</code> property. Whenever we call the <code>.query()</code> method,
+					it will return the previous query with it&#39;s filters and data. The <code>records</code> will be replaced if call the
+				<code>.fetch()</code> method.</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adults</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">();</span>
+<span style="color: #001080">adults</span><span style="color: #000000">.</span><span style="color: #001080">records</span><span style="color: #000000">.</span><span style="color: #795E26">forEach</span><span style="color: #000000">(</span><span style="color: #001080">record</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">record</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">));</span>
+</code></pre>
+				<p>With Query, we can manage all the fetched records at once.</p>
+				<p><strong>Manage Users with Find</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">allUsers</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">();</span>
+<span style="color: #001080">allUsers</span><span style="color: #000000">.</span><span style="color: #795E26">forEach</span><span style="color: #000000">(</span><span style="color: #001080">user</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">, { </span><span style="color: #001080">fisrt_name:</span><span style="color: #A31515">&#039;updated&#039;</span><span style="color: #000000"> }));</span>
+</code></pre>
+				<p><strong>Manage Users with Query</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">query</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">();</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">query</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">query</span><span style="color: #000000">.</span><span style="color: #795E26">updateAll</span><span style="color: #000000">({ </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;updated&#039;</span><span style="color: #000000"> });</span>
+</code></pre>
+				<p>If we want to have multiple queries with different filters, we can use a named query.</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">allUsers</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adultUsers</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;adults&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">where:</span><span style="color: #000000"> { </span><span style="color: #001080">age:</span><span style="color: #000000"> { </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> } } });</span>
+</code></pre>
+				<p>We can update the filters later.</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adultUsers</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;adults&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">adultUsers</span><span style="color: #000000">.</span><span style="color: #795E26">where</span><span style="color: #000000">({ </span><span style="color: #001080">age:</span><span style="color: #000000"> { </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }, </span><span style="color: #001080">gender:</span><span style="color: #000000"> { </span><span style="color: #001080">eq:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;male&#039;</span><span style="color: #000000"> }});</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">adultUsers</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
+</code></pre>
+				<p>##Record
+					The <code>.findOne()</code> method will returns a plain object with no helper, so we can&#39;t manage the data directly from
+				the returned object. With Record, we can cahce the data and manage the data directly from there.</p>
+				<p><strong>Using .findOne()</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">me</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">findOne</span><span style="color: #000000">(</span><span style="color: #098658">882823949</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">);</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">, { </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Updated First Name&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">);</span>
+</code></pre>
+				<p><strong>Using Record</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">me</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;882823949&#039;</span><span style="color: #000000">);</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">);</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">({ </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Updated First Name&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Using <code>Record</code> also allow us to assign form directly to the
+				record data, so we can save it once the form complete.</p>
+				<p><strong>Saving Record</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">me</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;8928394999&#039;</span><span style="color: #000000">);</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
+
+<span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;Name Updated&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #795E26">save</span><span style="color: #000000">();</span>
+</code></pre>
+				<a href="#where-filters" id="where-filters" style="color: inherit; text-decoration: none;">
+					<h2>Where Filters</h2>
+				</a>
+				<p>The <code>.find()</code>, and <code>.query()</code> method accepts where filters.
+				There are two types of filters, <code>AND</code> condition and <code>OR</code> conditions. </p>
+				<p>Passing the filter with an Object will mark the filter as <code>AND</code> condition, and passing
+				the filter with an Array will mark the filter as <code>OR</code> condition.</p>
+				<p><strong>AND filters</strong></p>
+				<pre><code class="language-typescript"><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;John&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">last_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Smith&#039;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>The filter above means looking for users with <code>fisrt_name == &quot;John&quot; AND last_name == &quot;Smith&quot;</code>.</p>
+				<p><strong>OR filters</strong></p>
+				<pre><code class="language-typescript"><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;John&#039;</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Michael&#039;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>The filter above means looking for users with <code>fisrt_name == &quot;John&quot; OR first_name == &quot;Michael&quot;</code>.</p>
+				<p><strong>OR condition inside AND condition</strong></p>
+				<pre><code class="language-typescript"><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">first_name:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;John&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;Michael&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">    </span><span style="color: #001080">age:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>The filter above means looking for users with <code>(first_name == &quot;John&quot; OR first_name == &quot;Michael&quot;) AND age &gt; 10</code>.</p>
+				<p><strong>AND condition inside OR condition</strong></p>
+				<pre><code class="language-typescript"><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;John&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">age:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">first_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Michael&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">age:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">15</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>The filters above means looking for users with <code>(first_name == &quot;John&quot; AND age &gt; 10) OR (fisrt_name == &quot;Michael&quot; AND age &gt; 15)</code>.</p>
+				<p>##Angular Usage</p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">User</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalData</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">fisrt_name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">Injectable</span><span style="color: #000000">({ </span><span style="color: #001080">providedIn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;root&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Driver</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalDriver</span><span style="color: #000000"> {}</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">Injectable</span><span style="color: #000000">({ </span><span style="color: #001080">providedIn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;root&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">UserAPI</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalOrigin</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">: </span><span style="color: #267F99">Driver</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #A31515">&#039;user-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">Injectable</span><span style="color: #000000">({ </span><span style="color: #001080">providedIn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;root&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Users</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalCollection</span><span style="color: #000000">&lt;</span><span style="color: #267F99">User</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">origin</span><span style="color: #000000">: </span><span style="color: #267F99">UserAPI</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #001080">origin</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user&#039;</span><span style="color: #000000">, </span><span style="color: #001080">endpoint:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;users&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">Component</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">selector:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;app-test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">tempalte:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;&lt;p *ngFor=&quot;let user of query.records&quot;&gt;{{user.data.first_name}}&lt;/p&gt;&#039;</span>
+<span style="color: #000000">})</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">AppTestComponent</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">query</span><span style="color: #000000">: </span><span style="color: #267F99">MetalQuery</span><span style="color: #000000">&lt;</span><span style="color: #267F99">User</span><span style="color: #000000">&gt;;</span>
+
+<span style="color: #000000">  </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">collection</span><span style="color: #000000">: </span><span style="color: #267F99">Users</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">query</span><span style="color: #000000"> = </span><span style="color: #001080">collection</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">();</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">query</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalcollection.html" class="tsd-kind-icon">Metal<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metaldatalist.html" class="tsd-kind-icon">Metal<wbr>Data<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/metaldriver.html" class="tsd-kind-icon">Metal<wbr>Driver</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalfilterstate.html" class="tsd-kind-icon">Metal<wbr>Filter<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/metalorigin.html" class="tsd-kind-icon">Metal<wbr>Origin</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalquery.html" class="tsd-kind-icon">Metal<wbr>Query</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalqueue.html" class="tsd-kind-icon">Metal<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalqueuestore.html" class="tsd-kind-icon">Metal<wbr>Queue<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalrecord.html" class="tsd-kind-icon">Metal<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalrecordlist.html" class="tsd-kind-icon">Metal<wbr>Record<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/metalrequest.html" class="tsd-kind-icon">Metal<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metalstate.html" class="tsd-kind-icon">Metal<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/metalstatestore.html" class="tsd-kind-icon">Metal<wbr>State<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metaltransaction.html" class="tsd-kind-icon">Metal<wbr>Transaction</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/metaltransactionerror.html" class="tsd-kind-icon">Metal<wbr>Transaction<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/schemaerror.html" class="tsd-kind-icon">Schema<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/arraydifference.html" class="tsd-kind-icon">Array<wbr>Difference</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/datechanges.html" class="tsd-kind-icon">Date<wbr>Changes</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/datedifference.html" class="tsd-kind-icon">Date<wbr>Difference</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mappeddataref.html" class="tsd-kind-icon">Mapped<wbr>Data<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mappedfilterrefs.html" class="tsd-kind-icon">Mapped<wbr>Filter<wbr>Refs</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalactiverequests.html" class="tsd-kind-icon">Metal<wbr>Active<wbr>Requests</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalbelongstorelation.html" class="tsd-kind-icon">Metal<wbr>Belongs<wbr>ToRelation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metaldata.html" class="tsd-kind-icon">Metal<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metaldatalisting.html" class="tsd-kind-icon">Metal<wbr>Data<wbr>Listing</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metaldriverconfig.html" class="tsd-kind-icon">Metal<wbr>Driver<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalfilterpersistentstate.html" class="tsd-kind-icon">Metal<wbr>Filter<wbr>Persistent<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalfilterref.html" class="tsd-kind-icon">Metal<wbr>Filter<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalhasmanyrelation.html" class="tsd-kind-icon">Metal<wbr>Has<wbr>Many<wbr>Relation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalhasonerelation.html" class="tsd-kind-icon">Metal<wbr>Has<wbr>One<wbr>Relation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalmodelref.html" class="tsd-kind-icon">Metal<wbr>Model<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalmodelreftranslation.html" class="tsd-kind-icon">Metal<wbr>Model<wbr>Ref<wbr>Translation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalorigins.html" class="tsd-kind-icon">Metal<wbr>Origins</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalqueriesstate.html" class="tsd-kind-icon">Metal<wbr>Queries<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalqueryfilterref.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Filter<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalqueryfilters.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Filters</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalquerylocalcaches.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Local<wbr>Caches</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalqueryoptions.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalquerypersistentcache.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Persistent<wbr>Cache</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalqueryqueuemeta.html" class="tsd-kind-icon">Metal<wbr>Query<wbr>Queue<wbr>Meta</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalqueuestoreconfig.html" class="tsd-kind-icon">Metal<wbr>Queue<wbr>Store<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalrecordsstate.html" class="tsd-kind-icon">Metal<wbr>Records<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalrelation.html" class="tsd-kind-icon">Metal<wbr>Relation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalrequestheaders.html" class="tsd-kind-icon">Metal<wbr>Request<wbr>Headers</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalrequestreferrer.html" class="tsd-kind-icon">Metal<wbr>Request<wbr>Referrer</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalurlsegment.html" class="tsd-kind-icon">MetalURLSegment</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/modelrefvalue.html" class="tsd-kind-icon">Model<wbr>Ref<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/objectdifference.html" class="tsd-kind-icon">Object<wbr>Difference</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/optional.html" class="tsd-kind-icon">Optional</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/realtimeevent.html" class="tsd-kind-icon">Realtime<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/schemadefinition.html" class="tsd-kind-icon">Schema<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/schemadefinitions.html" class="tsd-kind-icon">Schema<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/schemaerrorcontext.html" class="tsd-kind-icon">Schema<wbr>Error<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/stringdifference.html" class="tsd-kind-icon">String<wbr>Difference</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/wherepredicatecondition.html" class="tsd-kind-icon">Where<wbr>Predicate<wbr>Condition</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#fields" class="tsd-kind-icon">Fields</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#httprequesthandler" class="tsd-kind-icon">Http<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#itemtypeof" class="tsd-kind-icon">Item<wbr>Type<wbr>Of</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#keyof" class="tsd-kind-icon">Key<wbr>Of</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalcollectionconfig" class="tsd-kind-icon">Metal<wbr>Collection<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metaldatameta" class="tsd-kind-icon">Metal<wbr>Data<wbr>Meta</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metaldataref" class="tsd-kind-icon">Metal<wbr>Data<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalfindoptions" class="tsd-kind-icon">Metal<wbr>Find<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalmiddlewarecursor" class="tsd-kind-icon">Metal<wbr>Middleware<wbr>Cursor</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalmodelrefs" class="tsd-kind-icon">Metal<wbr>Model<wbr>Refs</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metaloriginconfig" class="tsd-kind-icon">Metal<wbr>Origin<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalpartialdata" class="tsd-kind-icon">Metal<wbr>Partial<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalpartialqueuedata" class="tsd-kind-icon">Metal<wbr>Partial<wbr>Queue<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalqueryfilterreftype" class="tsd-kind-icon">Metal<wbr>Query<wbr>Filter<wbr>Ref<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalqueryfilterrefs" class="tsd-kind-icon">Metal<wbr>Query<wbr>Filter<wbr>Refs</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalqueryqueue" class="tsd-kind-icon">Metal<wbr>Query<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalquerystatus" class="tsd-kind-icon">Metal<wbr>Query<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalqueuehandler" class="tsd-kind-icon">Metal<wbr>Queue<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalqueuestatus" class="tsd-kind-icon">Metal<wbr>Queue<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalrecordstate" class="tsd-kind-icon">Metal<wbr>Record<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalrequestmethod" class="tsd-kind-icon">Metal<wbr>Request<wbr>Method</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalrequestoptions" class="tsd-kind-icon">Metal<wbr>Request<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalrequestparam" class="tsd-kind-icon">Metal<wbr>Request<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metalrequestparams" class="tsd-kind-icon">Metal<wbr>Request<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metalsyncmethod" class="tsd-kind-icon">Metal<wbr>Sync<wbr>Method</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#metaltransactionmiddleware" class="tsd-kind-icon">Metal<wbr>Transaction<wbr>Middleware</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#metaltransactionstate" class="tsd-kind-icon">Metal<wbr>Transaction<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#orderby" class="tsd-kind-icon">Order<wbr>By</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#partialobject" class="tsd-kind-icon">Partial<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#partialstate" class="tsd-kind-icon">Partial<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#realtimeeventtype" class="tsd-kind-icon">Realtime<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#whereconditionfilter" class="tsd-kind-icon">Where<wbr>Condition<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#whereequalfilter" class="tsd-kind-icon">Where<wbr>Equal<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#wherefilter" class="tsd-kind-icon">Where<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#valuemaker" class="tsd-kind-icon">value<wbr>Maker</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#statestore" class="tsd-kind-icon">State<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#wherepredicateconditionkeys" class="tsd-kind-icon">Where<wbr>Predicate<wbr>Condition<wbr>Keys</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#drivers" class="tsd-kind-icon">drivers</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#globaldrivers" class="tsd-kind-icon">global<wbr>Drivers</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#persistent" class="tsd-kind-icon">Persistent</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#state" class="tsd-kind-icon">State</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#store" class="tsd-kind-icon">Store</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#arraydiff" class="tsd-kind-icon">array<wbr>Diff</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#compare" class="tsd-kind-icon">compare</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#datediff" class="tsd-kind-icon">date<wbr>Diff</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#decodefiltersfromurl" class="tsd-kind-icon">decode<wbr>Filters<wbr>FromURL</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#decodemodeluri" class="tsd-kind-icon">decode<wbr>ModelURI</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#decodemodelurifromurl" class="tsd-kind-icon">decode<wbr>ModelURIFromURL</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#diff" class="tsd-kind-icon">diff</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#encodemodeluri" class="tsd-kind-icon">encode<wbr>ModelURI</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#filterrefmap" class="tsd-kind-icon">filter<wbr>Ref<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#filtertoqueryparams" class="tsd-kind-icon">filter<wbr>ToQuery<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#inherit" class="tsd-kind-icon">inherit</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#modelrefmap" class="tsd-kind-icon">model<wbr>Ref<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#objectdiff" class="tsd-kind-icon">object<wbr>Diff</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#sleep" class="tsd-kind-icon">sleep</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#strtotype" class="tsd-kind-icon">str<wbr>ToType</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#stringdiff" class="tsd-kind-icon">string<wbr>Diff</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#typeof" class="tsd-kind-icon">type<wbr>Of</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

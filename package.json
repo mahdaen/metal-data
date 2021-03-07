@@ -30,6 +30,7 @@
     "eslint": "^7.21.0",
     "rimraf": "^3.0.2",
     "tslib": "^2.1.0",
-    "typescript": "^3.7.5"
+    "typedoc": "^0.20.30",
+    "typescript": "^3.9.9"
   }
 }
