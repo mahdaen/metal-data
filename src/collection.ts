@@ -1,4 +1,4 @@
-import { Subscription, SubscriptionHandler } from 'event-bridge/dist/client';
+import { Subscription, SubscriptionHandler } from 'metal-event-client';
 import * as _ from 'lodash';
 import {
   MetalCollectionConfig,

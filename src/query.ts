@@ -1,4 +1,4 @@
-import { Subscription } from 'event-bridge/dist/client';
+import { Subscription } from 'metal-event-client';
 import * as _ from 'lodash';
 import { v4 as uuid } from 'uuid';
 import { MetalCollection } from './collection';

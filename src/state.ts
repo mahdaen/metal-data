@@ -1,12 +1,12 @@
-import { PartialState } from './interface';
 import * as localforage from 'localforage';
 import * as _ from 'lodash';
 import { EventEmitter } from './event';
+import { PartialState } from './interface';
 
 localforage.config({
   name: 'metal-data',
   storeName: 'states',
-  description: 'MetalData state storage.'
+  description: 'Metal Data state storage.'
 });
 
 declare var window: {

@@ -8,7 +8,7 @@ import {
   MetalRequestOptions,
   MetalRequestParams
 } from './interface';
-import { Subscription } from 'event-bridge/dist/client';
+import { Subscription } from 'metal-event-client';
 import * as _ from 'lodash';
 import { MetalCollection } from './collection';
 import { EventEmitter } from './event';

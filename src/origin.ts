@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Client as EventBridge, Subscription, SubscriptionHandler } from 'event-bridge/dist/client';
-import { LogLevel } from 'event-bridge/dist/logger';
+import { LogLevel, MetalEvent, Subscription, SubscriptionHandler } from 'metal-event-client';
 import { v4 as uuid } from 'uuid';
 import { MetalCollection } from './collection';
 import { MetalDriver } from './driver';
@@ -26,7 +25,7 @@ export class MetalOrigin {
   public socketConnected: boolean;
 
   protected readonly _client: AxiosInstance;
-  protected readonly _socket: EventBridge;
+  protected readonly _socket: MetalEvent;
   protected readonly _collections: MetalCollection<MetalData | any>[] = [];
   protected readonly _requests: MetalActiveRequests = {};
   protected readonly _subscriptionQueue: Array<() => void> = [];
@@ -44,7 +43,7 @@ export class MetalOrigin {
     });
 
     if (configs.socketURL) {
-      this._socket = new EventBridge({
+      this._socket = new MetalEvent({
         baseURL: configs.socketURL,
         clientId: uuid(),
         logLevel: LogLevel.ERROR,
@@ -408,7 +407,7 @@ export class MetalOrigin {
 
     if (this._socket.status !== 'ready') {
       await new Promise(resolve => {
-        this._subscriptionQueue.push(() => resolve());
+        this._subscriptionQueue.push(() => resolve(null));
       });
     }
 
@@ -416,8 +415,8 @@ export class MetalOrigin {
       return handler(event);
     }, {
       ...options,
-      headers: { ...(this.configs.headers || {}), ...(headers || {}) } as any
-    });
+      headers: { ...(this.configs.headers || {}), ...(headers || {}) }
+    } as any);
   }
 
   /**

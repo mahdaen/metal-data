@@ -2,33 +2,34 @@
   "name": "metal-data",
   "version": "1.0.0",
   "description": "Modern REST API Library for Typescript",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "npx run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx rimraf ./dist && npx tsc"
   },
   "keywords": [
     "api",
     "client",
-    "rest",
-    "client",
-    "rest",
-    "api",
-    "client"
+    "rest"
   ],
-  "author": "Nanang Mahdaen El Agung <nanang@mahdaen.tv>",
+  "author": "Nanang Mahdaen El Agung <mahdaen@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
-    "event-bridge": "git+https://gitlab.com/mahdaentv/event-bridge.git",
     "localforage": "^1.9.0",
+    "metal-event-client": "^1.0.0",
     "lodash": "^4.17.21",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.168",
-    "@types/node": "^14.14.32",
+    "@types/uuid": "^8.3.0",
     "eslint": "^7.21.0",
+    "rimraf": "^3.0.2",
     "tslib": "^2.1.0",
-    "typescript": "^4.2.3"
+    "typescript": "^3.7.5"
   }
 }

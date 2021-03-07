@@ -1,11 +1,11 @@
-#MetalData
+#Metal Data
 Typescript REST API Client Library
 
 ##Driver
 
 **Exambple**
 ```typescript
-import { MetalDriver } from 'src/lib/metal-data/driver';
+import { MetalDriver } from 'metal-data';
 
 const driver = new MetalDriver();
 ```
@@ -14,8 +14,8 @@ const driver = new MetalDriver();
 
 **Example**
 ```typescript
-import { MetalDriver } from 'src/lib/metal-data/driver';
-import { MetalOrigin } from 'src/lib/metal-data/origin';
+import { MetalDriver } from 'metal-data';
+import { MetalOrigin } from 'metal-data';
 
 const driver = new MetalDriver();
 const origin = new MetalOrigin(driver, { name: 'default', baseURL: 'http://localhost:3000' });
@@ -23,8 +23,8 @@ const origin = new MetalOrigin(driver, { name: 'default', baseURL: 'http://local
 
 **Multiple Origin**
 ```typescript
-import { MetalDriver } from 'src/lib/metal-data/driver';
-import { MetalOrigin } from 'src/lib/metal-data/origin';
+import { MetalDriver } from 'metal-data';
+import { MetalOrigin } from 'metal-data';
 
 const driver = new MetalDriver();
 const userAPI = new MetalOrigin(driver, { name: 'user-api', baseURL: 'http://localhost:3000' });
@@ -35,10 +35,10 @@ const projectAPI = new MetalOrigin(driver, { name: 'project-api', baseURL: 'http
 
 **Example**
 ```typescript
-import { MetalDriver } from 'src/lib/metal-data/driver';
-import { MetalOrigin } from 'src/lib/metal-data/origin';
-import { MetalCollection } from 'src/lib/metal-data/collection'; 
-import { MetalData } from 'src/lib/metal-data/record'; 
+import { MetalDriver } from 'metal-data';
+import { MetalOrigin } from 'metal-data';
+import { MetalCollection } from 'metal-data'; 
+import { MetalData } from 'metal-data'; 
 
 interface User extends MetalData {
   first_name: string;
