@@ -58,15 +58,22 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p>#Metal Data
-				Typescript REST API Client Library</p>
-				<p>##Driver</p>
+				<a href="#metal-data" id="metal-data" style="color: inherit; text-decoration: none;">
+					<h1>Metal Data</h1>
+				</a>
+				<p>Typescript REST API Client Library</p>
+				<p><a href="https://mahdaen.github.io/metal-data">API Docs</a>.</p>
+				<a href="#driver" id="driver" style="color: inherit; text-decoration: none;">
+					<h2>Driver</h2>
+				</a>
 				<p><strong>Exambple</strong></p>
 				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
 </code></pre>
-				<p>##Origin</p>
+				<a href="#origin" id="origin" style="color: inherit; text-decoration: none;">
+					<h2>Origin</h2>
+				</a>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
@@ -82,7 +89,9 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">userAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">projectAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;project-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3001&#039;</span><span style="color: #000000"> });</span>
 </code></pre>
-				<p>##Collection</p>
+				<a href="#collection" id="collection" style="color: inherit; text-decoration: none;">
+					<h2>Collection</h2>
+				</a>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
@@ -119,8 +128,10 @@
 <span style="color: #008000">// Get single record.</span>
 <span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">findOne</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;9892394888&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">));</span>
 </code></pre>
-				<p>##Query
-					A <code>.find()</code> method is a simple one-way method to perform a listing of a Collection and will returns a plain array.
+				<a href="#query" id="query" style="color: inherit; text-decoration: none;">
+					<h2>Query</h2>
+				</a>
+				<p>A <code>.find()</code> method is a simple one-way method to perform a listing of a Collection and will returns a plain array.
 				While using <code>.query()</code>, it will returns a <strong>Query</strong> object so we can re-use the filters and caching. </p>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adults</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">({</span>
@@ -162,8 +173,10 @@
 <span style="color: #001080">adultUsers</span><span style="color: #000000">.</span><span style="color: #795E26">where</span><span style="color: #000000">({ </span><span style="color: #001080">age:</span><span style="color: #000000"> { </span><span style="color: #001080">gt:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }, </span><span style="color: #001080">gender:</span><span style="color: #000000"> { </span><span style="color: #001080">eq:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;male&#039;</span><span style="color: #000000"> }});</span>
 <span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">adultUsers</span><span style="color: #000000">.</span><span style="color: #795E26">fetch</span><span style="color: #000000">();</span>
 </code></pre>
-				<p>##Record
-					The <code>.findOne()</code> method will returns a plain object with no helper, so we can&#39;t manage the data directly from
+				<a href="#record" id="record" style="color: inherit; text-decoration: none;">
+					<h2>Record</h2>
+				</a>
+				<p>The <code>.findOne()</code> method will returns a plain object with no helper, so we can&#39;t manage the data directly from
 				the returned object. With Record, we can cahce the data and manage the data directly from there.</p>
 				<p><strong>Using .findOne()</strong></p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">me</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">findOne</span><span style="color: #000000">(</span><span style="color: #098658">882823949</span><span style="color: #000000">);</span>
@@ -247,7 +260,9 @@
 <span style="color: #000000">});</span>
 </code></pre>
 				<p>The filters above means looking for users with <code>(first_name == &quot;John&quot; AND age &gt; 10) OR (fisrt_name == &quot;Michael&quot; AND age &gt; 15)</code>.</p>
-				<p>##Angular Usage</p>
+				<a href="#angular-usage" id="angular-usage" style="color: inherit; text-decoration: none;">
+					<h2>Angular Usage</h2>
+				</a>
 				<pre><code class="language-typescript"><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">User</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalData</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">fisrt_name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
 <span style="color: #000000">}</span>
