@@ -1,7 +1,7 @@
 # Metal Data
 Typescript REST API Client Library
 
-[API Docs](https://mahdaen.github.io/metal-event).
+[API Docs](https://mahdaen.github.io/metal-data).
 
 ## Driver
 
