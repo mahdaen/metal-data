@@ -1,7 +1,9 @@
-#Metal Data
+# Metal Data
 Typescript REST API Client Library
 
-##Driver
+[API Docs](https://mahdaen.github.io/metal-event).
+
+## Driver
 
 **Exambple**
 ```typescript
@@ -10,7 +12,7 @@ import { MetalDriver } from 'metal-data';
 const driver = new MetalDriver();
 ```
 
-##Origin
+## Origin
 
 **Example**
 ```typescript
@@ -31,7 +33,7 @@ const userAPI = new MetalOrigin(driver, { name: 'user-api', baseURL: 'http://loc
 const projectAPI = new MetalOrigin(driver, { name: 'project-api', baseURL: 'http://localhost:3001' });
 ```
 
-##Collection
+## Collection
 
 **Example**
 ```typescript
@@ -71,7 +73,7 @@ users.find({
 users.findOne('9892394888').then(item => console.log(item.first_name));
 ```
 
-##Query
+## Query
 A `.find()` method is a simple one-way method to perform a listing of a Collection and will returns a plain array.
 While using `.query()`, it will returns a **Query** object so we can re-use the filters and caching. 
 
@@ -132,7 +134,7 @@ adultUsers.where({ age: { gt: 10 }, gender: { eq: 'male' }});
 await adultUsers.fetch();
 ```
 
-##Record
+## Record
 The `.findOne()` method will returns a plain object with no helper, so we can't manage the data directly from
 the returned object. With Record, we can cahce the data and manage the data directly from there.
 
@@ -237,7 +239,7 @@ users.find({
 
 The filters above means looking for users with `(first_name == "John" AND age > 10) OR (fisrt_name == "Michael" AND age > 15)`.
 
-##Angular Usage
+## Angular Usage
 
 ```typescript
 interface User extends MetalData {
