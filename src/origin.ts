@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { LogLevel, MetalEvent, Subscription, SubscriptionHandler } from 'metal-event-client';
-import { v4 as uuid } from 'uuid';
 import { MetalCollection } from './collection';
 import { MetalDriver } from './driver';
 import {
@@ -16,6 +15,7 @@ import {
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
 import { inherit } from './utils/object';
 import { sleep } from './utils/sleep';
+import uuid from './uuid';
 
 export class MetalOrigin {
   public name: string;

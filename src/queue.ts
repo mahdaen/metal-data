@@ -1,13 +1,8 @@
-import {
-  MetalPartialQueueData,
-  MetalQueueHandler,
-  MetalQueueStatus,
-  MetalQueueStoreConfig
-} from './interface';
 import * as _ from 'lodash';
-import { v4 as uuid } from 'uuid';
 import { EventEmitter } from './event';
+import { MetalPartialQueueData, MetalQueueHandler, MetalQueueStatus, MetalQueueStoreConfig } from './interface';
 import { typeOf } from './utils/typeof';
+import uuid from './uuid';
 
 export class MetalQueueStore<T> {
   public readonly name: string;

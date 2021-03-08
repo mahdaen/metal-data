@@ -1,5 +1,4 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { v4 as uuid } from 'uuid';
 import { EventEmitter } from './event';
 import {
   HttpRequestHandler,
@@ -10,6 +9,7 @@ import {
   MetalTransactionState,
   MetalURLSegment
 } from './interface';
+import uuid from './uuid';
 
 export class MetalTransaction<T> {
   public id = uuid();

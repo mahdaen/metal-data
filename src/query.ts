@@ -1,6 +1,5 @@
-import { Subscription } from 'metal-event-client';
 import * as _ from 'lodash';
-import { v4 as uuid } from 'uuid';
+import { Subscription } from 'metal-event-client';
 import { MetalCollection } from './collection';
 import { EventEmitter, EventHandler, Unsubscribe } from './event';
 import {
@@ -30,6 +29,7 @@ import { MetalState, StateStore } from './state';
 import { diff } from './utils/diff';
 import { inherit } from './utils/object';
 import { sleep } from './utils/sleep';
+import uuid from './uuid';
 
 /**
  * A Query object with a sets of helper methods to manage the filters and the cached data.

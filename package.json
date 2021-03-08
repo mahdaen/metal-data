@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx rimraf ./dist && npx tsc",
     "docs": "npx typedoc src/index.ts --out docs --name \"Metal Data\" --readme ./readme.md"
@@ -20,13 +21,11 @@
     "axios": "^0.21.1",
     "localforage": "^1.9.0",
     "lodash": "^4.17.21",
-    "metal-event-client": "^1.0.4",
-    "uuid": "^8.3.2"
+    "metal-event-client": "^2.0.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.168",
-    "@types/uuid": "^8.3.0",
     "eslint": "^7.21.0",
     "rimraf": "^3.0.2",
     "tslib": "^2.1.0",
