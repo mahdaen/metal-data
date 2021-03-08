@@ -116,8 +116,9 @@ out
 .yarn/install-state.gz
 .pnp.*
 
-# Source Files
-src
+# Project Files
 .idea
-.tsconfig.json
+src
+tsconfig.json
 docs
+.eslintrc.json
