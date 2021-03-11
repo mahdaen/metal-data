@@ -520,9 +520,9 @@ export class MetalQuery<T extends MetalData> {
    * @param chunkSize - Split the request by number of records per request.
    * @param options - Optional request options.
    */
-  public async browse(chunkSize = 1000, options: MetalFindOptions<T> = {}): Promise<MetalQueryQueue<T>> {
+  public browse(chunkSize = 1000, options: MetalFindOptions<T> = {}): MetalQueryQueue<T> {
     try {
-      const meta = await this.head(options);
+      const meta = { ...this.meta, currentPage: 1, nextPage: 2 };
       const data: MetalQueryQueueMeta<T> = {
         ...meta,
         records: new MetalDataList<T>(),
@@ -556,6 +556,9 @@ export class MetalQuery<T extends MetalData> {
         if (metaData && metaData.nextPage) {
           meta.nextPage = metaData.nextPage;
         }
+
+        q.stateChange.emit(q);
+        q.store.stateChange.emit(q);
 
         if (data.records.length < data.totalRecords && meta.nextPage) {
           q.handler(q);

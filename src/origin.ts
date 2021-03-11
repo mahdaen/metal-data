@@ -58,12 +58,20 @@ export class MetalOrigin {
   }
 
   public connect() {
+    let retries = 0;
     if (!this.socketConnected) {
       this._socket.disconnected.subscribe(() => {
+        retries += 1;
+
+        if (retries >= 100) {
+          return;
+        }
+
         this._socket.connect(true);
       });
 
       this._socket.connected.subscribe(() => {
+        retries = 0;
         if ((this._socket as any).queues.length) {
           (this._socket as any).queues.forEach(queue => queue.resolve());
         }
