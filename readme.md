@@ -1,16 +1,13 @@
-# Metal Data
+# MetalData
 
-REST API Client Library for Browser. This project is in active development so there will be a major changes without any
-notice!
-
-[API Docs](https://mahdaen.github.io/metal-data).
+Typescript REST API Client Library
 
 ## Driver
 
 **Exambple**
 
 ```typescript
-import { MetalDriver } from 'metal-data';
+import { MetalDriver } from 'src/lib/metal-data/driver';
 
 const driver = new MetalDriver();
 ```
@@ -20,8 +17,8 @@ const driver = new MetalDriver();
 **Example**
 
 ```typescript
-import { MetalDriver } from 'metal-data';
-import { MetalOrigin } from 'metal-data';
+import { MetalDriver } from 'src/lib/metal-data/driver';
+import { MetalOrigin } from 'src/lib/metal-data/origin';
 
 const driver = new MetalDriver();
 const origin = new MetalOrigin(driver, { name: 'default', baseURL: 'http://localhost:3000' });
@@ -30,8 +27,8 @@ const origin = new MetalOrigin(driver, { name: 'default', baseURL: 'http://local
 **Multiple Origin**
 
 ```typescript
-import { MetalDriver } from 'metal-data';
-import { MetalOrigin } from 'metal-data';
+import { MetalDriver } from 'src/lib/metal-data/driver';
+import { MetalOrigin } from 'src/lib/metal-data/origin';
 
 const driver = new MetalDriver();
 const userAPI = new MetalOrigin(driver, { name: 'user-api', baseURL: 'http://localhost:3000' });
@@ -43,10 +40,10 @@ const projectAPI = new MetalOrigin(driver, { name: 'project-api', baseURL: 'http
 **Example**
 
 ```typescript
-import { MetalDriver } from 'metal-data';
-import { MetalOrigin } from 'metal-data';
-import { MetalCollection } from 'metal-data';
-import { MetalData } from 'metal-data';
+import { MetalDriver } from 'src/lib/metal-data/driver';
+import { MetalOrigin } from 'src/lib/metal-data/origin';
+import { MetalCollection } from 'src/lib/metal-data/collection';
+import { MetalData } from 'src/lib/metal-data/record';
 
 interface User extends MetalData {
   first_name: string;
@@ -82,7 +79,7 @@ users.findOne('9892394888').then(item => console.log(item.first_name));
 ## Query
 
 A `.find()` method is a simple one-way method to perform a listing of a Collection and will returns a plain array. While
-using `.query()`, it will returns a **Query** object so we can re-use the filters and caching.
+using `.query()`, it will return a **Query** object, so we can re-use the filters and caching.
 
 **Example**
 
@@ -100,7 +97,7 @@ adults.fetch().then(records => {
 ```
 
 Query will store the fetched data into the `records` property. Whenever we call the `.query()` method, it will return
-the previous query with it's filters and data. The `records` will be replaced if call the
+the previous query with its filters and data. The `records` will be replaced if call the
 `.fetch()` method.
 
 **Example**
@@ -148,8 +145,8 @@ await adultUsers.fetch();
 
 ## Record
 
-The `.findOne()` method will returns a plain object with no helper, so we can't manage the data directly from the
-returned object. With Record, we can cahce the data and manage the data directly from there.
+The `.findOne()` method will return a plain object with no helper, so we can't manage the data directly from the
+returned object. With Record, we can cache the data and manage the data directly from there.
 
 **Using .findOne()**
 
@@ -259,6 +256,95 @@ users.find({
 
 The filters above means looking for users
 with `(first_name == "John" AND age > 10) OR (fisrt_name == "Michael" AND age > 15)`.
+
+## Transaction Middleware
+
+By default, Metal Data will use an axios middleware to handle the requests. With a middleware, you can add a function to
+transform the request and the response, even a custom handler to run the transaction to forward the requests to 3rd
+party services such Algolia.
+
+A middleware is a function that accept `transaction` object and `next` function to continue to the next middlewares.
+When adding a middleware, please note that the default axios middleware will be ignored, so you must manually add it if
+you want to keep using it. A middleware also must return the `next` call to proceed the next middlewares.
+
+**Example**
+
+```typescript
+const origin = new MetalOrigin({ baseURL: 'http://localhost:8000' });
+
+function addJWT(trx, next) {
+  if (trx.status !== 'complete') {
+    trx.configs.headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  return next();
+}
+
+function transformResponse(trx, next) {
+  const { meta, users } = trx.response.data
+  trx.response.data = { meta, data: users };
+}
+
+origin
+  .use(addJWT)
+  .use(origin.http())
+  .use(transformResponse);
+```
+
+The example above will modify the transaction object and adds an JWT authorization before requesting to the server.
+The `transformResponse` middleware will modify the response object so MetalData will understand the data structure.
+
+Another scenario to use middleware is if you want to forward the query requests to algolia but keep the
+`POST`, `PUT`, and `DELETE` requests for REST API. To do that you need to add two middleware and both of them must run
+the transaction. To prevent duplicate request, on the REST API middleware you must only run the transaction if the
+transaction status is not completed.
+
+**Example**
+
+```typescript
+function algolia() {
+  const client = algoliasearch(config);
+
+  return async (trx, next) => {
+    if (trx.request.listing) {
+      await trx.run(async () => {
+        const { hits } = await client.initIndex('INDEX').search();
+        return {
+          status: 200,
+          statusText: 'Success',
+          headers: {},
+          data: {
+            meta: {},
+            data: hits
+          }
+        };
+      });
+    }
+
+    return next();
+  }
+}
+
+function http() {
+  const client = axios.create(config);
+
+  return async (trx, next) => {
+    if (trx.status !== 'complete') {
+      await trx.run(async (configs) => {
+        return await client.request(configs);
+      });
+    }
+
+    return next();
+  }
+}
+
+origin
+  .use(algolia())
+  .use(addJWT)
+  .use(http())
+  .use(transformResponse)
+```
 
 ## Angular Usage
 

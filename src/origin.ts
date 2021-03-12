@@ -1,4 +1,3 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { LogLevel, MetalEvent, Subscription, SubscriptionHandler } from 'metal-event-client';
 import { MetalCollection } from './collection';
 import { MetalDriver } from './driver';
@@ -7,11 +6,13 @@ import {
   MetalData,
   MetalMiddlewareCursor,
   MetalOriginConfig,
+  MetalRequestConfig,
   MetalRequestOptions,
   MetalRequestParams,
   MetalTransactionMiddleware,
   Optional
 } from './interface';
+import { http } from './middlewares/http';
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
 import { inherit } from './utils/object';
 import { sleep } from './utils/sleep';
@@ -24,7 +25,6 @@ export class MetalOrigin {
   public middlewares: MetalTransactionMiddleware<MetalData | any>[] = [];
   public socketConnected: boolean;
 
-  protected readonly _client: AxiosInstance;
   protected readonly _socket: MetalEvent;
   protected readonly _collections: MetalCollection<MetalData | any>[] = [];
   protected readonly _requests: MetalActiveRequests = {};
@@ -38,9 +38,6 @@ export class MetalOrigin {
 
     this.name = configs.name;
     this.href = `${configs.name}://`;
-    this._client = axios.create({
-      baseURL: configs.baseURL,
-    });
 
     if (configs.socketURL) {
       this._socket = new MetalEvent({
@@ -52,26 +49,35 @@ export class MetalOrigin {
     this.driver.origin(this.name, this);
   }
 
-  public use<T extends MetalData>(middleware: MetalTransactionMiddleware<T>): this {
-    this.middlewares.push(middleware);
+  /**
+   * Create a transaction middleware.
+   * @param middlewares - One or more middleware to add.
+   */
+  public use<T extends MetalData>(...middlewares: MetalTransactionMiddleware<T>[]): this {
+    this.middlewares.push(...middlewares);
     return this;
   }
 
+  /**
+   * Create a HTTP middleware using an axios instance.
+   */
+  public http() {
+    return http({
+      baseURL: this.configs.baseURL,
+      headers: this.configs.headers
+    });
+  }
+
+  /**
+   * Connect to a WebSocket server.
+   */
   public connect() {
-    let retries = 0;
     if (!this.socketConnected) {
       this._socket.disconnected.subscribe(() => {
-        retries += 1;
-
-        if (retries >= 100) {
-          return;
-        }
-
         this._socket.connect(true);
       });
 
       this._socket.connected.subscribe(() => {
-        retries = 0;
         if ((this._socket as any).queues.length) {
           (this._socket as any).queues.forEach(queue => queue.resolve());
         }
@@ -287,11 +293,7 @@ export class MetalOrigin {
    */
   public async request<R, P>(req: MetalRequest, payload?: P): Promise<MetalTransaction<R>> {
     try {
-      if (typeof this.beforeRequest === 'function') {
-        await this.beforeRequest(req);
-      }
-
-      const configs: AxiosRequestConfig = {
+      const configs: MetalRequestConfig = {
         url: req.url,
         method: req.method,
         params: { ...(req.params || {}) },
@@ -320,17 +322,21 @@ export class MetalOrigin {
       const transaction = new MetalTransaction<R>(configs, req);
       this._requests[reqKey] = transaction;
 
-      if (typeof this.transformRequest === 'function') {
-        await this.transformRequest(transaction);
-      }
+      this.transactions.push(transaction);
+      this.driver.transactions.push(transaction);
+      this.driver.transactionChange.emit(transaction);
 
       if (typeof this.driver.beforeTransaction === 'function') {
         await this.driver.beforeTransaction(transaction);
       }
 
-      this.transactions.push(transaction);
-      this.driver.transactions.push(transaction);
-      this.driver.transactionChange.emit(transaction);
+      if (!this.middlewares.length) {
+        this.middlewares.push(this.http());
+      }
+
+      if (this.configs.slowNetworkSimulation) {
+        await sleep(5000);
+      }
 
       if (this.middlewares.length) {
         const middlewares = [...this.middlewares];
@@ -341,26 +347,6 @@ export class MetalOrigin {
         };
 
         await next();
-      }
-
-      if (transaction.status !== 'complete') {
-        if (typeof this.runTransaction === 'function') {
-          await this.runTransaction(transaction);
-        } else {
-          await transaction.run(this._client.request);
-        }
-      }
-
-      if (this.configs.slowNetworkSimulation) {
-        await sleep(5000);
-      }
-
-      if (typeof this.transformResponse === 'function') {
-        await this.transformResponse(transaction);
-      }
-
-      if (typeof this.afterRequest === 'function') {
-        await this.afterRequest(transaction);
       }
 
       if (typeof this.driver.afterTransaction === 'function') {
@@ -426,42 +412,6 @@ export class MetalOrigin {
       headers: { ...(this.configs.headers || {}), ...(headers || {}) }
     } as any);
   }
-
-  /**
-   * Optional method hook before sending the request.
-   * @param req
-   * @param payload
-   * @protected
-   */
-  protected beforeRequest?<P>(req: MetalRequest, payload?: P): Promise<void>;
-
-  /**
-   * Optional method hook to manage the request before sending it to the server.
-   * @param transaction
-   * @protected
-   */
-  protected transformRequest?(transaction?: MetalTransaction<any>): Promise<void>;
-
-  /**
-   * Optional method hook to manage the transaction before returning it.
-   * @param transaction
-   * @protected
-   */
-  protected transformResponse?(transaction?: MetalTransaction<any>): Promise<void>;
-
-  /**
-   * Optional method hook to manage the transaction after the request done.
-   * @param transaction
-   * @protected
-   */
-  protected afterRequest?(transaction?: MetalTransaction<any>): Promise<void>;
-
-  /**
-   * Optional method to run the transaction.
-   * @param transaction
-   * @protected
-   */
-  protected runTransaction?(transaction?: MetalTransaction<any>): Promise<void>;
 
   /**
    * Optional method to handle the errors.

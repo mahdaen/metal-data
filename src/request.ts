@@ -1,36 +1,38 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { EventEmitter } from './event';
 import {
   HttpRequestHandler,
   MetalCollectionConfig,
+  MetalRequestConfig,
   MetalRequestMethod,
   MetalRequestOptions,
   MetalRequestParams,
+  MetalResponse,
   MetalTransactionState,
   MetalURLSegment
 } from './interface';
 import uuid from './uuid';
 
-export class MetalTransaction<T> {
+export class MetalTransaction<D> {
   public id = uuid();
   public status: MetalTransactionState = 'init';
+  public statusText?: string;
   public statusChange: EventEmitter<MetalTransactionState> = new EventEmitter<MetalTransactionState>();
   public startDate: Date;
   public endDate: Date;
-  public response: AxiosResponse<T>;
-  public error: MetalTransactionError<T>;
+  public response: MetalResponse<D>;
+  public error: MetalTransactionError<D>;
 
   public get duration(): number {
     return this.endDate.getTime() - this.startDate.getTime();
   }
 
-  constructor(public configs: AxiosRequestConfig,
+  constructor(public configs: MetalRequestConfig,
               public request: MetalRequest) {}
 
   /**
    * Run the transaction.
    */
-  public async run(handler?: HttpRequestHandler<AxiosResponse>): Promise<void> {
+  public async run(handler?: HttpRequestHandler<MetalResponse<D>>): Promise<void> {
     this.status = 'running';
     this.startDate = new Date();
     this.statusChange.emit(this.status);
@@ -45,36 +47,18 @@ export class MetalTransaction<T> {
       this.endDate = new Date();
       this.status = 'failed';
       this.statusChange.emit(this.status);
-      this.error = new MetalTransactionError<T>(error, this);
+      this.error = error;
       throw this.error;
     }
   }
 }
 
-export class MetalTransactionError<T> extends Error {
-  public code: number;
-
-  constructor(public error: AxiosError,
-              public transaction: MetalTransaction<T>) {
-    super(error.message);
-
-    if (error.response) {
-      const { status, data } = error.response;
-
-      if (status) {
-        this.code = status;
-      }
-
-      if (data && data.errors) {
-        if (typeof data.errors === 'string') {
-          this.message = data.errors;
-        } else if (Array.isArray(data.errors)) {
-          this.message = data.errors.map(str => str.endsWith('.') ? str : `${str}.`).join(' ');
-        } else {
-          this.message = JSON.stringify(data.errors);
-        }
-      }
-    }
+export class MetalTransactionError<D> extends Error {
+  constructor(public response: MetalResponse<D>,
+              public message: string,
+              public code: number,
+              public statusText?: string) {
+    super(message);
   }
 }
 

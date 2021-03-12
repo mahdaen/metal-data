@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
 import { MetalCollection } from './collection';
 import { MetalOrigin } from './origin';
 import { MetalQuery } from './query';
@@ -81,7 +80,7 @@ export type OrderBy<T> = {
 export type Fields<T> = Array<KeyOf<T> | { [K in keyof T]?: Fields<T[K]> | Fields<ItemTypeOf<T[K]>> }>;
 
 export type MetalTransactionState = 'init' | 'running' | 'complete' | 'failed';
-export type HttpRequestHandler<T> = (configs: AxiosRequestConfig) => Promise<T>;
+export type HttpRequestHandler<T> = (configs: MetalRequestConfig) => Promise<T>;
 export type MetalMiddlewareCursor = () => void | Promise<void>;
 export type MetalTransactionMiddleware<T> = (trx: MetalTransaction<T>, next: MetalMiddlewareCursor) => void | Promise<void>;
 
@@ -388,3 +387,18 @@ export type MetalPartialQueueData<T> = {
 export type PartialState<T> = {
   [K in keyof T]?: T[K] | PartialState<T[K]>;
 };
+
+export interface MetalRequestConfig {
+  url: string;
+  method: MetalRequestMethod;
+  params?: MetalRequestParams;
+  headers?: MetalRequestHeaders;
+  data?: any;
+}
+
+export interface MetalResponse<D> {
+  data: D;
+  status: number;
+  statusText: string;
+  headers: MetalRequestHeaders;
+}
