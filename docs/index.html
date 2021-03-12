@@ -58,17 +58,15 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#metal-data" id="metal-data" style="color: inherit; text-decoration: none;">
-					<h1>Metal Data</h1>
+				<a href="#metaldata" id="metaldata" style="color: inherit; text-decoration: none;">
+					<h1>MetalData</h1>
 				</a>
-				<p>REST API Client Library for Browser. This project is in active development so there will be a major changes without any
-				notice!</p>
-				<p><a href="https://mahdaen.github.io/metal-data">API Docs</a>.</p>
+				<p>Typescript REST API Client Library</p>
 				<a href="#driver" id="driver" style="color: inherit; text-decoration: none;">
 					<h2>Driver</h2>
 				</a>
 				<p><strong>Exambple</strong></p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/driver&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
 </code></pre>
@@ -76,15 +74,15 @@
 					<h2>Origin</h2>
 				</a>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/driver&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/origin&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">origin</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
 </code></pre>
 				<p><strong>Multiple Origin</strong></p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/driver&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/origin&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">driver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalDriver</span><span style="color: #000000">();</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">userAPI</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">(</span><span style="color: #001080">driver</span><span style="color: #000000">, { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user-api&#039;</span><span style="color: #000000">, </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:3000&#039;</span><span style="color: #000000"> });</span>
@@ -94,10 +92,10 @@
 					<h2>Collection</h2>
 				</a>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalCollection</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalData</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;metal-data&#039;</span><span style="color: #000000">;</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalDriver</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/driver&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalOrigin</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/origin&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalCollection</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/collection&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">MetalData</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/lib/metal-data/record&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">User</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">MetalData</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">first_name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
@@ -133,7 +131,7 @@
 					<h2>Query</h2>
 				</a>
 				<p>A <code>.find()</code> method is a simple one-way method to perform a listing of a Collection and will returns a plain array. While
-				using <code>.query()</code>, it will returns a <strong>Query</strong> object so we can re-use the filters and caching.</p>
+				using <code>.query()</code>, it will return a <strong>Query</strong> object, so we can re-use the filters and caching.</p>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adults</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">where:</span><span style="color: #000000"> {</span>
@@ -147,7 +145,7 @@
 <span style="color: #000000">});</span>
 </code></pre>
 				<p>Query will store the fetched data into the <code>records</code> property. Whenever we call the <code>.query()</code> method, it will return
-					the previous query with it&#39;s filters and data. The <code>records</code> will be replaced if call the
+					the previous query with its filters and data. The <code>records</code> will be replaced if call the
 				<code>.fetch()</code> method.</p>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adults</span><span style="color: #000000"> = </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">();</span>
@@ -177,8 +175,8 @@
 				<a href="#record" id="record" style="color: inherit; text-decoration: none;">
 					<h2>Record</h2>
 				</a>
-				<p>The <code>.findOne()</code> method will returns a plain object with no helper, so we can&#39;t manage the data directly from the
-				returned object. With Record, we can cahce the data and manage the data directly from there.</p>
+				<p>The <code>.findOne()</code> method will return a plain object with no helper, so we can&#39;t manage the data directly from the
+				returned object. With Record, we can cache the data and manage the data directly from there.</p>
 				<p><strong>Using .findOne()</strong></p>
 				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">me</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000">.</span><span style="color: #795E26">findOne</span><span style="color: #000000">(</span><span style="color: #098658">882823949</span><span style="color: #000000">);</span>
 <span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">.</span><span style="color: #001080">first_name</span><span style="color: #000000">);</span>
@@ -261,6 +259,86 @@
 </code></pre>
 				<p>The filters above means looking for users
 				with <code>(first_name == &quot;John&quot; AND age &gt; 10) OR (fisrt_name == &quot;Michael&quot; AND age &gt; 15)</code>.</p>
+				<a href="#transaction-middleware" id="transaction-middleware" style="color: inherit; text-decoration: none;">
+					<h2>Transaction Middleware</h2>
+				</a>
+				<p>By default, Metal Data will use an axios middleware to handle the requests. With a middleware, you can add a function to
+					transform the request and the response, even a custom handler to run the transaction to forward the requests to 3rd
+				party services such Algolia.</p>
+				<p>A middleware is a function that accept <code>transaction</code> object and <code>next</code> function to continue to the next middlewares.
+					When adding a middleware, please note that the default axios middleware will be ignored, so you must manually add it if
+				you want to keep using it. A middleware also must return the <code>next</code> call to proceed the next middlewares.</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">origin</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MetalOrigin</span><span style="color: #000000">({ </span><span style="color: #001080">baseURL:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://localhost:8000&#039;</span><span style="color: #000000"> });</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">addJWT</span><span style="color: #000000">(</span><span style="color: #001080">trx</span><span style="color: #000000">, </span><span style="color: #001080">next</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">status</span><span style="color: #000000"> !== </span><span style="color: #A31515">&#039;complete&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">configs</span><span style="color: #000000">.</span><span style="color: #001080">headers</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;Authorization&#039;</span><span style="color: #000000">] = </span><span style="color: #A31515">`Bearer </span><span style="color: #0000FF">${</span><span style="color: #001080">token</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">next</span><span style="color: #000000">();</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">transformResponse</span><span style="color: #000000">(</span><span style="color: #001080">trx</span><span style="color: #000000">, </span><span style="color: #001080">next</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">meta</span><span style="color: #000000">, </span><span style="color: #0070C1">users</span><span style="color: #000000"> } = </span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">data</span>
+<span style="color: #000000">  </span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000"> = { </span><span style="color: #001080">meta</span><span style="color: #000000">, </span><span style="color: #001080">data:</span><span style="color: #000000"> </span><span style="color: #001080">users</span><span style="color: #000000"> };</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #001080">origin</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #001080">addJWT</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #001080">origin</span><span style="color: #000000">.</span><span style="color: #795E26">http</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #001080">transformResponse</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>The example above will modify the transaction object and adds an JWT authorization before requesting to the server.
+				The <code>transformResponse</code> middleware will modify the response object so MetalData will understand the data structure.</p>
+				<p>Another scenario to use middleware is if you want to forward the query requests to algolia but keep the
+					<code>POST</code>, <code>PUT</code>, and <code>DELETE</code> requests for REST API. To do that you need to add two middleware and both of them must run
+					the transaction. To prevent duplicate request, on the REST API middleware you must only run the transaction if the
+				transaction status is not completed.</p>
+				<p><strong>Example</strong></p>
+				<pre><code class="language-typescript"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">algolia</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #795E26">algoliasearch</span><span style="color: #000000">(</span><span style="color: #001080">config</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">trx</span><span style="color: #000000">, </span><span style="color: #001080">next</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">request</span><span style="color: #000000">.</span><span style="color: #001080">listing</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">hits</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">initIndex</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;INDEX&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">search</span><span style="color: #000000">();</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #001080">status:</span><span style="color: #000000"> </span><span style="color: #098658">200</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">statusText:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Success&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">headers:</span><span style="color: #000000"> {},</span>
+<span style="color: #000000">          </span><span style="color: #001080">data:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">meta:</span><span style="color: #000000"> {},</span>
+<span style="color: #000000">            </span><span style="color: #001080">data:</span><span style="color: #000000"> </span><span style="color: #001080">hits</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        };</span>
+<span style="color: #000000">      });</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">next</span><span style="color: #000000">();</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">http</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #001080">axios</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">(</span><span style="color: #001080">config</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">trx</span><span style="color: #000000">, </span><span style="color: #001080">next</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #001080">status</span><span style="color: #000000"> !== </span><span style="color: #A31515">&#039;complete&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">trx</span><span style="color: #000000">.</span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">configs</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">request</span><span style="color: #000000">(</span><span style="color: #001080">configs</span><span style="color: #000000">);</span>
+<span style="color: #000000">      });</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">next</span><span style="color: #000000">();</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #001080">origin</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #795E26">algolia</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #001080">addJWT</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #795E26">http</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #001080">transformResponse</span><span style="color: #000000">)</span>
+</code></pre>
 				<a href="#angular-usage" id="angular-usage" style="color: inherit; text-decoration: none;">
 					<h2>Angular Usage</h2>
 				</a>
@@ -441,10 +519,16 @@
 						<a href="interfaces/metalrelation.html" class="tsd-kind-icon">Metal<wbr>Relation</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/metalrequestconfig.html" class="tsd-kind-icon">Metal<wbr>Request<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/metalrequestheaders.html" class="tsd-kind-icon">Metal<wbr>Request<wbr>Headers</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/metalrequestreferrer.html" class="tsd-kind-icon">Metal<wbr>Request<wbr>Referrer</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/metalresponse.html" class="tsd-kind-icon">Metal<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/metalurlsegment.html" class="tsd-kind-icon">MetalURLSegment</a>
