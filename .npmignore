@@ -121,4 +121,5 @@ out
 src
 tsconfig.json
 docs
+test
 .eslintrc.json

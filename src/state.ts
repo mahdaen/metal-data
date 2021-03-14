@@ -96,7 +96,7 @@ export class MetalStateStore {
       if (this.syncStatus !== 'stopped') {
         this.startSync();
       }
-    }, timeout || 100);
+    }, timeout || 100) as any;
 
     this.syncStatus = 'idle';
   }

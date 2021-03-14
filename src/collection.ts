@@ -1,5 +1,5 @@
-import { Subscription, SubscriptionHandler } from 'metal-event-client';
 import * as _ from 'lodash';
+import { Subscription, SubscriptionHandler } from 'metal-event-client';
 import {
   MetalCollectionConfig,
   MetalData,
@@ -52,10 +52,10 @@ export class MetalCollection<T extends MetalData> {
         this.records[id] = this.createRecord(id);
       }
 
-      return this.records[id];
+      return this.records[id].init();
     }
 
-    return this.createRecord(id);
+    return this.createRecord(id).init();
   }
 
   public query(filters?: MetalQueryFilters<T>, options?: MetalQueryOptions): MetalQuery<T>;

@@ -51,7 +51,6 @@ export class MetalQuery<T extends MetalData> {
   public error: MetalTransactionError<T>;
 
   private _caches: MetalQueryLocalCaches<T> = {};
-  private _timeout: any;
   private _finalizerID: string;
   private _subscription: Subscription<T>;
   private _subscribers: EventHandler<RealtimeEvent<T>>[] = [];
@@ -187,42 +186,6 @@ export class MetalQuery<T extends MetalData> {
     this.filters = filters;
     this.statusChange.emit(this);
     return this;
-  }
-
-  /**
-   * Schedule a background sync to update the local data with the remote data.
-   * @param timeout - The timeout duration.
-   * @param repeat - Number of how many the background sync should repeats. Use Infinity to keep the background sync.
-   * @param options - Optional request options.
-   */
-  public schedule(timeout: number, repeat?: number, options?: MetalRequestOptions): this {
-    clearTimeout(this._timeout);
-
-    const reschedule = () => {
-      if (repeat) {
-        if (repeat === Infinity) {
-          this.schedule(timeout, repeat, options);
-        } else {
-          this.schedule(timeout, repeat - 1, options);
-        }
-      }
-    };
-
-    this._timeout = setTimeout(() => {
-      this
-        .fetch(options)
-        .then(reschedule)
-        .catch(reschedule);
-    }, timeout);
-
-    return this;
-  }
-
-  /**
-   * Method to stop the background sync scheduler.
-   */
-  public stopSchedule(): void {
-    clearTimeout(this._timeout);
   }
 
   public filterRef(refs: MetalQueryFilterRefs<T>): this;

@@ -1,9 +1,26 @@
 import { typeOf } from './typeof';
 
+/**
+ * Get the changed values between two strings.
+ *
+ * @param target - The current string to compare with.
+ * @param source - The source string to compare from.
+ */
 export function diff(target: string, source: string): string[];
+/**
+ * Get the changed values between two dates.
+ *
+ * @param target - The current date to compare with.
+ * @param source - The source date to compare from.
+ */
 export function diff(target: Date, source: Date): DateChanges;
+/**
+ * Get the changed values between two arrays.
+ *
+ * @param target - The current array to compare with.
+ * @param source - The source array to compare from.
+ */
 export function diff<T, R = PartialObject<T>>(target: T[], source: T[]): R[];
-export function diff<T, R = PartialObject<T>>(target: T, source: T, deepArray?: boolean): R;
 /**
  * Get the changed values between two objects.
  *
@@ -11,6 +28,7 @@ export function diff<T, R = PartialObject<T>>(target: T, source: T, deepArray?: 
  * @param source - The source object to compare from.
  * @param deepArray - Perform a deep difference to a value with array type.
  */
+export function diff<T, R = PartialObject<T>>(target: T, source: T, deepArray?: boolean): R;
 export function diff<T>(target: T[] | T | Date | string, source: T[] | T | Date | string, deepArray?: boolean)
   : string[] | DateChanges | T[] | T {
   const type = typeOf(target);
@@ -33,9 +51,65 @@ export function diff<T>(target: T[] | T | Date | string, source: T[] | T | Date 
   }
 }
 
+/**
+ * Get a difference of two objects. The function will not compare the sub-object or sub-array.
+ * @param target - Object to compare with.
+ * @param source - Object to compare from.
+ */
+export function quickDiff<T>(target: T, source: T): PartialObject<T>;
+/**
+ * Get a comparison of two objects. The function will not compare the sub-object or sub-array.
+ * @param target - Object to compare with.
+ * @param source - Object to compare from.
+ * @param comparison - A comparison reference.
+ */
+export function quickDiff<T>(target: T, source: T, comparison?: boolean): ObjectDifference<T>;
+export function quickDiff<T>(target: T, source: T, comparison?: boolean): PartialObject<T> | ObjectDifference<T> {
+  const origins = {};
+  const changes = {};
+
+  for (const [key, value] of Object.entries(target)) {
+    if (value !== source[key]) {
+      origins[key] = target[key];
+      changes[key] = source[key];
+    }
+  }
+
+  if (comparison) {
+    return { origins, changes };
+  }
+
+  return changes;
+}
+
+/**
+ * Get the comparison of two strings.
+ *
+ * @param target - The current string to compare with.
+ * @param source - The source string to compare from.
+ */
 export function compare(target: string, source: string): StringDifference;
+/**
+ * Get the comparison of two dates.
+ *
+ * @param target - The current date to compare with.
+ * @param source - The source date to compare from.
+ */
 export function compare(target: Date, source: Date): DateDifference;
+/**
+ * Get the comparison of two arrays.
+ *
+ * @param target - The current array to compare with.
+ * @param source - The source array to compare from.
+ */
 export function compare<T>(target: T[], source: T[]): ArrayDifference<T>;
+/**
+ * Get the comparison of two objects.
+ *
+ * @param target - The current object to compare with.
+ * @param source - The source object to compare from.
+ * @param deepArray - Perform a deep difference to a value with array type.
+ */
 export function compare<T>(target: T, source: T, deepArray?: boolean): ObjectDifference<T>;
 /**
  * Get the comparison of two objects.
@@ -71,12 +145,18 @@ export type PartialObject<T> = {
 };
 
 export interface ObjectDifference<T> {
-  origins: T;
-  changes: T;
+  origins: PartialObject<T>; // Original data reference.
+  changes: PartialObject<T>; // Changed data reference.
 }
 
+/**
+ * Get the deep difference of two Objects.
+ *
+ * @param target - The current object to compare with.
+ * @param source - The source object to compare from.
+ * @param deepArray - Perform a deep difference to a value with array type.
+ */
 export function objectDiff<T>(target: T, source: T, deepArray?: boolean): T;
-export function objectDiff<T>(target: T, source: T, deepArray?: boolean, comparison?: boolean): ObjectDifference<T>;
 /**
  * Get the deep difference of two Objects.
  *
@@ -85,6 +165,7 @@ export function objectDiff<T>(target: T, source: T, deepArray?: boolean, compari
  * @param deepArray - Perform a deep difference to a value with array type.
  * @param comparison - Return a comparison object.
  */
+export function objectDiff<T>(target: T, source: T, deepArray?: boolean, comparison?: boolean): ObjectDifference<T>;
 export function objectDiff<T>(target: T, source: T, deepArray?: boolean, comparison?: boolean): T | ObjectDifference<T> {
   const origins = {};
   const changes = {};
@@ -132,6 +213,12 @@ export function objectDiff<T>(target: T, source: T, deepArray?: boolean, compari
     }
   }
 
+  for (const [key, value] of Object.entries(source)) {
+    if (!target.hasOwnProperty(key)) {
+      changes[key] = value;
+    }
+  }
+
   if (comparison) {
     return { origins, changes } as ObjectDifference<T>;
   }
@@ -140,12 +227,17 @@ export function objectDiff<T>(target: T, source: T, deepArray?: boolean, compari
 }
 
 export interface ArrayDifference<T> {
-  origins: T[];
-  changes: T[];
+  origins: T[]; // Original data reference.
+  changes: T[]; // Changed data reference.
 }
 
+/**
+ * Get the deep difference of two Arrays.
+ *
+ * @param target - The current array to compare with.
+ * @param source - The source array to compare from.
+ */
 export function arrayDiff<T>(target: T[], source: T[]): T[];
-export function arrayDiff<T>(target: T[], source: T[], comparison?: boolean): ArrayDifference<T>;
 /**
  * Get the deep difference of two Arrays.
  *
@@ -153,6 +245,7 @@ export function arrayDiff<T>(target: T[], source: T[], comparison?: boolean): Ar
  * @param source - The source array to compare from.
  * @param comparison - Return a comparison object.
  */
+export function arrayDiff<T>(target: T[], source: T[], comparison?: boolean): ArrayDifference<T>;
 export function arrayDiff<T>(target: T[], source: T[], comparison?: boolean): T[] | ArrayDifference<T> {
   const origins = [];
   const changes = [];
@@ -187,14 +280,24 @@ export function arrayDiff<T>(target: T[], source: T[], comparison?: boolean): T[
       } else {
         if (item !== source[i]) {
           origins[i] = item;
-          changes[i] = source[i];
+
+          if (typeof source[i] === 'undefined') {
+            changes[i] = null;
+          } else {
+            changes[i] = source[i];
+          }
+        } else {
+          origins[i] = NaN;
+          changes[i] = NaN;
         }
       }
     }
   });
 
   if (target.length < source.length) {
-    changes.push(...([...source].splice(0, target.length)));
+    for (let i = target.length; i < source.length; ++i) {
+      changes.push(source[i]);
+    }
   }
 
   if (comparison) {
@@ -209,8 +312,13 @@ export interface StringDifference {
   changes: string[];
 }
 
+/**
+ * Get a deep difference of two Strings.
+ *
+ * @param target - The current string to compare with.
+ * @param source - The source string to compare from.
+ */
 export function stringDiff(target: string, source: string): string[];
-export function stringDiff(target: string, source: string, comparison?: boolean): StringDifference;
 /**
  * Get a deep difference of two Strings.
  *
@@ -218,6 +326,7 @@ export function stringDiff(target: string, source: string, comparison?: boolean)
  * @param source - The source string to compare from.
  * @param comparison - Return a comparison object.
  */
+export function stringDiff(target: string, source: string, comparison?: boolean): StringDifference;
 export function stringDiff(target: string, source: string, comparison?: boolean): string[] | StringDifference {
   const origins = [];
   const changes = [];
@@ -225,9 +334,23 @@ export function stringDiff(target: string, source: string, comparison?: boolean)
   target.split('').forEach((str, i) => {
     if (str !== source[i]) {
       origins[i] = target[i];
-      changes[i] = source[i];
+
+      if (typeof source[i] === 'undefined') {
+        changes[i] = null;
+      } else {
+        changes[i] = source[i];
+      }
+    } else {
+      origins[i] = NaN;
+      changes[i] = NaN;
     }
   });
+
+  if (source.length > target.length) {
+    for (let i = target.length; i < source.length; ++i) {
+      changes[i] = source[i];
+    }
+  }
 
   if (comparison) {
     return { origins, changes };
@@ -237,8 +360,8 @@ export function stringDiff(target: string, source: string, comparison?: boolean)
 }
 
 export interface DateDifference {
-  origins: DateChanges;
-  changes: DateChanges;
+  origins: DateChanges; // Original data reference.
+  changes: DateChanges; // Changed data reference.
 }
 
 export interface DateChanges {
@@ -251,8 +374,13 @@ export interface DateChanges {
   milliseconds?: number;
 }
 
+/**
+ * Get a deep difference of two Date.
+ *
+ * @param target - The current date to compare with.
+ * @param source - The source date to compare from.
+ */
 export function dateDiff(target: Date, source: Date): DateChanges;
-export function dateDiff(target: Date, source: Date, comparison?: boolean): DateDifference;
 /**
  * Get a deep difference of two Date.
  *
@@ -260,6 +388,7 @@ export function dateDiff(target: Date, source: Date, comparison?: boolean): Date
  * @param source - The source date to compare from.
  * @param comparison - Return a comparison object.
  */
+export function dateDiff(target: Date, source: Date, comparison?: boolean): DateDifference;
 export function dateDiff(target: Date, source: Date, comparison?: boolean): DateChanges | DateDifference {
   const origins: DateChanges = {
     year: target.getFullYear(),

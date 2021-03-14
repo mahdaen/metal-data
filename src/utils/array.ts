@@ -1,3 +1,8 @@
+/**
+ * Group items into multiple columns by limiting the max rows.
+ * @param target - Array to split.
+ * @param maxRows - Max rows per column.
+ */
 export function columnGroup<T>(target: T[], maxRows: number): Array<T[]> {
   if (target.length <= maxRows) {
     return [target];

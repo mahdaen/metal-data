@@ -1,3 +1,7 @@
+import * as _ from 'lodash';
+import { Subscription } from 'metal-event-client';
+import { MetalCollection } from './collection';
+import { EventEmitter } from './event';
 import {
   Fields,
   KeyOf,
@@ -8,11 +12,8 @@ import {
   MetalRequestOptions,
   MetalRequestParams
 } from './interface';
-import { Subscription } from 'metal-event-client';
-import * as _ from 'lodash';
-import { MetalCollection } from './collection';
-import { EventEmitter } from './event';
 import { MetalQuery } from './query';
+import { MetalState, StateStore } from './state';
 import { diff } from './utils/diff';
 import { sleep } from './utils/sleep';
 
@@ -20,16 +21,22 @@ import { sleep } from './utils/sleep';
  * A special class with a sets of helper methods to manage a single record.
  */
 export class MetalRecord<T extends MetalData> {
+  /** History reference path **/
   public href: string;
-  /** JSON encoded data as the raw data to check the changes **/
-  public encoded: string;
+  /** Changes reference path **/
+  public cref: string;
+  /** Mirrored data to check the changes **/
+  public mirror: T;
   /** Property to mark the record as deleted **/
   public deleted: boolean;
 
+  /** Parent query reference **/
   public query?: MetalQuery<T>;
 
   /** Property to mark the record status **/
   public status: MetalRecordState = 'init';
+  /** Property to mark the record data initialization. **/
+  public initialized = false;
   /**
    * An Event Emitter instance to subscribe when the record state changed.
    */
@@ -61,13 +68,12 @@ export class MetalRecord<T extends MetalData> {
   }
 
   private _selected: boolean;
-  private _timeout: any;
 
   /**
    * Get the changed properties.
    */
   public get changes(): MetalPartialData<T> {
-    return diff(JSON.parse(this.encoded || '{}'), this.data);
+    return diff(this.mirror, this.data);
   }
 
   /**
@@ -89,48 +95,104 @@ export class MetalRecord<T extends MetalData> {
               public id: string,
               public data: T = {} as T) {
     this.href = `${collection.href}/${id}`;
+    this.cref = `${this.href}/changes`;
 
     if (data.id) {
       this.status = 'ready';
+      this.initialized = true;
     }
 
-    this.encoded = JSON.stringify(data);
+    this.mirror = JSON.parse(JSON.stringify(data));
   }
 
   /**
-   * Schedule background sync.
-   * @param timeout - The timeout duration.
-   * @param repeat - Number of how many the background sync should repeats. Use Infinity to keep the background sync.
-   * @param options - Optional request options.
+   * Initialize the record data.
    */
-  public schedule(timeout: number, repeat?: number, options?: MetalRequestOptions): this {
-    clearTimeout(this._timeout);
+  public init(): this {
+    this._loadCaches();
+    return this;
+  }
 
-    const reschedule = () => {
-      if (repeat) {
-        if (repeat === Infinity) {
-          this.schedule(timeout, repeat, options);
-        } else {
-          this.schedule(timeout, repeat - 1, options);
-        }
+  /**
+   * Load record data State.
+   * @private
+   */
+  private _loadCaches(): void {
+    const { persistentCache, memoryCache } = this.collection.configs;
+
+    if (persistentCache) {
+      this._applyCache(StateStore.store(this.href));
+    }
+
+    if (memoryCache) {
+      this._applyCache(StateStore.get(this.href));
+    }
+  }
+
+  /**
+   * Write record data into State.
+   * @private
+   */
+  private _writeCache(): void {
+    const { persistentCache, memoryCache } = this.collection.configs;
+
+    if (persistentCache) {
+      StateStore.store(this.href).set(this.data);
+    }
+
+    if (memoryCache) {
+      StateStore.store(this.href).set(this.data);
+    }
+  }
+
+  /**
+   * Apply data from a State.
+   * @param fromState
+   * @private
+   */
+  private _applyCache(fromState: MetalState<T>): void {
+    if (!this.initialized) {
+      if (fromState.data.id) {
+        this.assign(fromState.data);
       }
-    };
 
-    this._timeout = setTimeout(() => {
-      this
-        .fetch(options)
-        .then(reschedule)
-        .catch(reschedule);
-    }, timeout);
+      this.initialized = true;
+      this.status = 'ready';
+    }
+  }
+
+  /**
+   * Apply the changed data from cache.
+   */
+  public unStash(): this {
+    const { persistentCache, memoryCache } = this.collection.configs;
+
+    if (persistentCache) {
+      this.set(StateStore.store(this.cref).data);
+    }
+
+    if (memoryCache) {
+      this.set(StateStore.get(this.cref).data);
+    }
 
     return this;
   }
 
   /**
-   * Stop the background sync scheduler.
+   * Save the changed data into cache.
    */
-  public stopSchedule(): void {
-    clearTimeout(this._timeout);
+  public stash(): this {
+    const { persistentCache, memoryCache } = this.collection.configs;
+
+    if (persistentCache) {
+      StateStore.store(this.cref).set(this.changes);
+    }
+
+    if (memoryCache) {
+      StateStore.get(this.cref).set(this.changes);
+    }
+
+    return this;
   }
 
   /**
@@ -138,9 +200,10 @@ export class MetalRecord<T extends MetalData> {
    * @param data - Data to be applied.
    */
   public assign(data: T): this {
-    this.encoded = JSON.stringify(data);
+    this.mirror = JSON.parse(JSON.stringify(data));
     Object.assign(this.data, data);
     this.dataChange.emit(this.data);
+    this._writeCache();
 
     return this;
   }
@@ -149,15 +212,16 @@ export class MetalRecord<T extends MetalData> {
    * Reset the data to the initial state.
    */
   public reset(): this {
-    this.data = JSON.parse(this.encoded);
+    this.data = JSON.parse(JSON.stringify(this.mirror));
     this.dataChange.emit(this.data);
+    this._writeCache();
     return this;
   }
 
   public set(key: string, value: any): this;
   public set(data: MetalPartialData<T>): this;
   /**
-   * Apply new changes to the data.
+   * Apply new changes to the data. Data changed using this method is temporary and wont be cached.
    * @param keyData - Property name, or partial data. If the argument is an object, merge will be used.
    * @param value - Property value, required if the first argument is a string.
    */
@@ -169,6 +233,7 @@ export class MetalRecord<T extends MetalData> {
     }
 
     this.dataChange.emit(this.data);
+    this.stash();
     return this;
   }
 
@@ -244,10 +309,12 @@ export class MetalRecord<T extends MetalData> {
     try {
       if (this.id) {
         this.status = 'sync';
+        this.stash();
 
-        const encoded = JSON.stringify(this.data);
         await this.collection.update(this.id, this.changes, options);
-        this.encoded = encoded;
+
+        this.mirror = JSON.parse(JSON.stringify(this.data));
+        this._writeCache();
       } else {
         const data = await this.collection.create(this.data, options);
         this.assign(data);
@@ -272,7 +339,7 @@ export class MetalRecord<T extends MetalData> {
    */
   public async update(payload: MetalPartialData<T>, options?: MetalRequestOptions): Promise<this> {
     try {
-      Object.assign(this.data, payload);
+      this.set(payload);
       await this.save(options);
     } catch (error) {
       throw error;
