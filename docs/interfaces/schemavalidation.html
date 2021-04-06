@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RealtimeEvent | Metal Data</title>
+	<title>SchemaValidation | Metal Data</title>
 	<meta name="description" content="Documentation for Metal Data">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,29 +55,28 @@
 					<a href="../modules.html">Metal Data</a>
 				</li>
 				<li>
-					<a href="realtimeevent.html">RealtimeEvent</a>
+					<a href="schemavalidation.html">SchemaValidation</a>
 				</li>
 			</ul>
-			<h1>Interface RealtimeEvent&lt;T&gt;</h1>
+			<h1>Interface SchemaValidation</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Schema validation result.</p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RealtimeEvent</span>
+						<span class="target">SchemaValidation</span>
 					</li>
 				</ul>
 			</section>
@@ -88,11 +87,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="realtimeevent.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="realtimeevent.html#filters" class="tsd-kind-icon">filters</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="realtimeevent.html#path" class="tsd-kind-icon">path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="realtimeevent.html#referer" class="tsd-kind-icon">referer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="realtimeevent.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="schemavalidation.html#_expected" class="tsd-kind-icon">_expected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="schemavalidation.html#_given" class="tsd-kind-icon">_given</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="schemavalidation.html#_message" class="tsd-kind-icon">_message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="schemavalidation.html#_valid" class="tsd-kind-icon">_valid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="schemavalidation.html#_value" class="tsd-kind-icon">_value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,52 +100,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
+					<a name="_expected" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> _expected</h3>
+					<div class="tsd-signature tsd-kind-icon">_expected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L180">src/interface.ts:180</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L275">src/interface.ts:275</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="filters" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> filters</h3>
-					<div class="tsd-signature tsd-kind-icon">filters<span class="tsd-signature-symbol">:</span> <a href="../modules.html#wherefilter" class="tsd-signature-type" data-tsd-kind="Type alias">WhereFilter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="_given" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> _given</h3>
+					<div class="tsd-signature tsd-kind-icon">_given<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L179">src/interface.ts:179</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L276">src/interface.ts:276</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="path" class="tsd-anchor"></a>
-					<h3>path</h3>
-					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="_message" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> _message</h3>
+					<div class="tsd-signature tsd-kind-icon">_message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L178">src/interface.ts:178</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L277">src/interface.ts:277</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="referer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> referer</h3>
-					<div class="tsd-signature tsd-kind-icon">referer<span class="tsd-signature-symbol">:</span> <a href="realtimeevent.html" class="tsd-signature-type" data-tsd-kind="Interface">RealtimeEvent</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="_valid" class="tsd-anchor"></a>
+					<h3>_valid</h3>
+					<div class="tsd-signature tsd-kind-icon">_valid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L181">src/interface.ts:181</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L274">src/interface.ts:274</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../modules.html#realtimeeventtype" class="tsd-signature-type" data-tsd-kind="Type alias">RealtimeEventType</a></div>
+					<a name="_value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> _value</h3>
+					<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L177">src/interface.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/interface.ts#L278">src/interface.ts:278</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,23 +163,23 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="realtimeevent.html" class="tsd-kind-icon">Realtime<wbr>Event</a>
+					<li class="current tsd-kind-interface">
+						<a href="schemavalidation.html" class="tsd-kind-icon">Schema<wbr>Validation</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="realtimeevent.html#data" class="tsd-kind-icon">data</a>
+								<a href="schemavalidation.html#_expected" class="tsd-kind-icon">_expected</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="realtimeevent.html#filters" class="tsd-kind-icon">filters</a>
+								<a href="schemavalidation.html#_given" class="tsd-kind-icon">_given</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="realtimeevent.html#path" class="tsd-kind-icon">path</a>
+								<a href="schemavalidation.html#_message" class="tsd-kind-icon">_message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="realtimeevent.html#referer" class="tsd-kind-icon">referer</a>
+								<a href="schemavalidation.html#_valid" class="tsd-kind-icon">_valid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="realtimeevent.html#type" class="tsd-kind-icon">type</a>
+								<a href="schemavalidation.html#_value" class="tsd-kind-icon">_value</a>
 							</li>
 						</ul>
 					</li>

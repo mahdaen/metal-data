@@ -58,7 +58,7 @@
 					<a href="metalrecord.html">MetalRecord</a>
 				</li>
 			</ul>
-			<h1>Class MetalRecord&lt;T&gt;</h1>
+			<h1>Class MetalRecord&lt;T, C&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -77,6 +77,9 @@
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/metaldata.html" class="tsd-signature-type" data-tsd-kind="Interface">MetalData</a></h4>
+					</li>
+					<li>
+						<h4>C<span class="tsd-signature-symbol">: </span><a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span> = <a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -112,6 +115,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#initialized" class="tsd-kind-icon">initialized</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#mirror" class="tsd-kind-icon">mirror</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#path" class="tsd-kind-icon">path</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#query" class="tsd-kind-icon">query</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#selectionchange" class="tsd-kind-icon">selection<wbr>Change</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metalrecord.html#status" class="tsd-kind-icon">status</a></li>
@@ -158,13 +162,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Metal<wbr>Record&lt;T&gt;<span class="tsd-signature-symbol">(</span>collection<span class="tsd-signature-symbol">: </span><a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Metal<wbr>Record&lt;T, C&gt;<span class="tsd-signature-symbol">(</span>collection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L86">src/record.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L90">src/record.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -177,11 +181,14 @@
 								<li>
 									<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/metaldata.html" class="tsd-signature-type" data-tsd-kind="Interface">MetalData</a></h4>
 								</li>
+								<li>
+									<h4>C<span class="tsd-signature-symbol">: </span><a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="metalorigin.html" class="tsd-signature-type" data-tsd-kind="Class">MetalOrigin</a><span class="tsd-signature-symbol">&lt;</span><a href="metaldriver.html" class="tsd-signature-type" data-tsd-kind="Class">MetalDriver</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span> = <a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="metalorigin.html" class="tsd-signature-type" data-tsd-kind="Class">MetalOrigin</a><span class="tsd-signature-symbol">&lt;</span><a href="metaldriver.html" class="tsd-signature-type" data-tsd-kind="Class">MetalDriver</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>collection: <a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>collection: <span class="tsd-signature-type">C</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The parent collection to manage the record.</p>
 									</div>
@@ -199,7 +206,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -209,7 +216,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="collection" class="tsd-anchor"></a>
 					<h3>collection</h3>
-					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
@@ -219,7 +226,7 @@
 					<div class="tsd-signature tsd-kind-icon">cref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L27">src/record.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L29">src/record.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="eventemitter.html" class="tsd-signature-type" data-tsd-kind="Class">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L44">src/record.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L47">src/record.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">deleted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L31">src/record.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L34">src/record.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -263,10 +270,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="error" class="tsd-anchor"></a>
 					<h3>error</h3>
-					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Error</span></div>
+					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="metaltransactionerror.html" class="tsd-signature-type" data-tsd-kind="Class">MetalTransactionError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L47">src/record.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L50">src/record.ts:50</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -278,10 +285,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="errorchange" class="tsd-anchor"></a>
 					<h3>error<wbr>Change</h3>
-					<div class="tsd-signature tsd-kind-icon">error<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="eventemitter.html" class="tsd-signature-type" data-tsd-kind="Class">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">error<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="eventemitter.html" class="tsd-signature-type" data-tsd-kind="Class">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><a href="metaltransactionerror.html" class="tsd-signature-type" data-tsd-kind="Class">MetalTransactionError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L51">src/record.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L54">src/record.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -296,7 +303,7 @@
 					<div class="tsd-signature tsd-kind-icon">href<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L25">src/record.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L27">src/record.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -318,7 +325,7 @@
 					<div class="tsd-signature tsd-kind-icon">initialized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L39">src/record.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L42">src/record.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -333,7 +340,7 @@
 					<div class="tsd-signature tsd-kind-icon">mirror<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L29">src/record.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L32">src/record.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -343,12 +350,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="query" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> query</h3>
-					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <a href="metalquery.html" class="tsd-signature-type" data-tsd-kind="Class">MetalQuery</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MetalPath</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L34">src/record.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L30">src/record.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="query" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> query</h3>
+					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <a href="metalquery.html" class="tsd-signature-type" data-tsd-kind="Class">MetalQuery</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="metalcollection.html" class="tsd-signature-type" data-tsd-kind="Class">MetalCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="metalorigin.html" class="tsd-signature-type" data-tsd-kind="Class">MetalOrigin</a><span class="tsd-signature-symbol">&lt;</span><a href="metaldriver.html" class="tsd-signature-type" data-tsd-kind="Class">MetalDriver</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L37">src/record.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -363,7 +380,7 @@
 					<div class="tsd-signature tsd-kind-icon">selection<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="eventemitter.html" class="tsd-signature-type" data-tsd-kind="Class">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L54">src/record.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L57">src/record.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -373,7 +390,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../modules.html#metalquerystatus" class="tsd-signature-type" data-tsd-kind="Type alias">MetalQueryStatus</a><span class="tsd-signature-symbol"> = &#x27;init&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L37">src/record.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L40">src/record.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -388,7 +405,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="eventemitter.html" class="tsd-signature-type" data-tsd-kind="Class">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#metalquerystatus" class="tsd-signature-type" data-tsd-kind="Type alias">MetalQueryStatus</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L43">src/record.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L46">src/record.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -403,7 +420,7 @@
 					<div class="tsd-signature tsd-kind-icon">subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L52">src/record.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L55">src/record.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -420,7 +437,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L75">src/record.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L78">src/record.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -442,7 +459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L82">src/record.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L85">src/record.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -465,7 +482,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L56">src/record.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L59">src/record.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -473,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L61">src/record.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L64">src/record.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -498,13 +515,13 @@
 					<a name="assign" class="tsd-anchor"></a>
 					<h3>assign</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">assign<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">assign<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L202">src/record.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L235">src/record.ts:235</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -521,7 +538,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -529,13 +546,13 @@
 					<a name="delete" class="tsd-anchor"></a>
 					<h3>delete</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span>, sync<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L355">src/record.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L412">src/record.ts:412</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,13 +563,19 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Optional request options.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> sync: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Mark the record as sync state.</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -560,14 +583,14 @@
 					<a name="exclude" class="tsd-anchor"></a>
 					<h3>exclude</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">exclude<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">exclude<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">exclude<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">exclude<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L286">src/record.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L321">src/record.ts:321</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -576,12 +599,12 @@
 									<h5>fields: <a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L287">src/record.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L322">src/record.ts:322</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -593,7 +616,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fetch: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -601,13 +624,13 @@
 					<a name="fetch" class="tsd-anchor"></a>
 					<h3>fetch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">fetch<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalfindoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalFindOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">fetch<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalfindoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalFindOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L375">src/record.ts:375</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L440">src/record.ts:440</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -625,7 +648,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -633,13 +656,13 @@
 					<a name="init" class="tsd-anchor"></a>
 					<h3>init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L111">src/record.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L116">src/record.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,7 +670,7 @@
 									<p>Initialize the record data.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -662,7 +685,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L434">src/record.ts:434</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L497">src/record.ts:497</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -676,7 +699,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L435">src/record.ts:435</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L498">src/record.ts:498</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -693,31 +716,31 @@
 					<a name="option" class="tsd-anchor"></a>
 					<h3>option</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">option<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;prefix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;suffix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;headers&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;params&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;payload&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;referrer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delay&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;browse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;excludeFields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meta&quot;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">option<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalfindoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalFindOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">option<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;prefix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;suffix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;headers&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;params&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;payload&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;referrer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delay&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;browse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;reSync&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;excludeFields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meta&quot;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">option<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalfindoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalFindOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L240">src/record.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L275">src/record.ts:275</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>key: <span class="tsd-signature-type">&quot;prefix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;suffix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;headers&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;params&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;payload&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;referrer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delay&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;browse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;excludeFields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meta&quot;</span></h5>
+									<h5>key: <span class="tsd-signature-type">&quot;prefix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;suffix&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;headers&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;params&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;payload&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;referrer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delay&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;browse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;reSync&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;excludeFields&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;meta&quot;</span></h5>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L241">src/record.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L276">src/record.ts:276</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -726,7 +749,7 @@
 									<h5>options: <a href="../modules.html#metalfindoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalFindOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -734,14 +757,14 @@
 					<a name="params" class="tsd-anchor"></a>
 					<h3>params</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalrequestparams" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestParams</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalrequestparams" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestParams</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L252">src/record.ts:252</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L287">src/record.ts:287</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -753,12 +776,12 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L253">src/record.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L288">src/record.ts:288</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -767,7 +790,7 @@
 									<h5>params: <a href="../modules.html#metalrequestparams" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestParams</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -775,13 +798,13 @@
 					<a name="reset" class="tsd-anchor"></a>
 					<h3>reset</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L214">src/record.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L248">src/record.ts:248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -789,7 +812,7 @@
 									<p>Reset the data to the initial state.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -797,13 +820,13 @@
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span>, sync<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L308">src/record.ts:308</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L344">src/record.ts:344</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -815,13 +838,19 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Optional request options.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> sync: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Mark the record as sync state.</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -829,14 +858,14 @@
 					<a name="select" class="tsd-anchor"></a>
 					<h3>select</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">select<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">select<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">select<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">select<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L269">src/record.ts:269</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L304">src/record.ts:304</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -845,12 +874,12 @@
 									<h5>fields: <a href="../modules.html#fields" class="tsd-signature-type" data-tsd-kind="Type alias">Fields</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L270">src/record.ts:270</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L305">src/record.ts:305</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -862,7 +891,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fetch: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -870,14 +899,14 @@
 					<a name="set" class="tsd-anchor"></a>
 					<h3>set</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalpartialdata" class="tsd-signature-type" data-tsd-kind="Type alias">MetalPartialData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalpartialdata" class="tsd-signature-type" data-tsd-kind="Type alias">MetalPartialData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L221">src/record.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L256">src/record.ts:256</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -889,12 +918,12 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L222">src/record.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L257">src/record.ts:257</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -903,7 +932,7 @@
 									<h5>data: <a href="../modules.html#metalpartialdata" class="tsd-signature-type" data-tsd-kind="Type alias">MetalPartialData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -911,13 +940,13 @@
 					<a name="stash" class="tsd-anchor"></a>
 					<h3>stash</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">stash<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">stash<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L184">src/record.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L213">src/record.ts:213</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -925,7 +954,7 @@
 									<p>Save the changed data into cache.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -933,13 +962,13 @@
 					<a name="subscribe" class="tsd-anchor"></a>
 					<h3>subscribe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L409">src/record.ts:409</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L472">src/record.ts:472</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -948,7 +977,7 @@
 									then the websocket will trigger an event.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -956,13 +985,13 @@
 					<a name="unstash" class="tsd-anchor"></a>
 					<h3>un<wbr>Stash</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">un<wbr>Stash<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">un<wbr>Stash<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L167">src/record.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L196">src/record.ts:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -970,7 +999,7 @@
 									<p>Apply the changed data from cache.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -978,13 +1007,13 @@
 					<a name="unsubscribe" class="tsd-anchor"></a>
 					<h3>unsubscribe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L425">src/record.ts:425</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L488">src/record.ts:488</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -992,7 +1021,7 @@
 									<p>Unsubscribe for changes to this record.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1000,13 +1029,13 @@
 					<a name="update" class="tsd-anchor"></a>
 					<h3>update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalpartialdata" class="tsd-signature-type" data-tsd-kind="Type alias">MetalPartialData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><a href="../modules.html#metalpartialdata" class="tsd-signature-type" data-tsd-kind="Type alias">MetalPartialData</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span>, sync<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/f83c478/src/record.ts#L340">src/record.ts:340</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/record.ts#L390">src/record.ts:390</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1023,13 +1052,19 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../modules.html#metalrequestoptions" class="tsd-signature-type" data-tsd-kind="Type alias">MetalRequestOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/optional.html" class="tsd-signature-type" data-tsd-kind="Interface">Optional</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Optional request options.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> sync: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Mark the record as sync state.</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metalrecord.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRecord</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1085,6 +1120,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="metalrecord.html#mirror" class="tsd-kind-icon">mirror</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="metalrecord.html#path" class="tsd-kind-icon">path</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="metalrecord.html#query" class="tsd-kind-icon">query</a>
