@@ -12,7 +12,9 @@ import {
   MetalRequestOptions,
   MetalRequestParams
 } from './interface';
+import { MetalPath } from './path';
 import { MetalQuery } from './query';
+import { MetalTransactionError } from './request';
 import { MetalState, StateStore } from './state';
 import { diff } from './utils/diff';
 import { sleep } from './utils/sleep';
@@ -20,11 +22,12 @@ import { sleep } from './utils/sleep';
 /**
  * A special class with a sets of helper methods to manage a single record.
  */
-export class MetalRecord<T extends MetalData> {
+export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = MetalCollection<T>> {
   /** History reference path **/
   public href: string;
   /** Changes reference path **/
   public cref: string;
+  public path: MetalPath;
   /** Mirrored data to check the changes **/
   public mirror: T;
   /** Property to mark the record as deleted **/
@@ -44,11 +47,11 @@ export class MetalRecord<T extends MetalData> {
   public dataChange: EventEmitter<T> = new EventEmitter<T>();
 
   /** Property to store the errors **/
-  public error: Error;
+  public error: MetalTransactionError<T>;
   /**
    * An Event Emitter instance to subscribe when an error happened.
    */
-  public errorChange: EventEmitter<Error> = new EventEmitter<Error>();
+  public errorChange: EventEmitter<MetalTransactionError<T>> = new EventEmitter<MetalTransactionError<T>>();
   public subscription: Subscription<T>;
 
   public selectionChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -84,6 +87,7 @@ export class MetalRecord<T extends MetalData> {
   }
 
   private _options: MetalFindOptions<T> = {};
+  private _cached = false;
 
   /**
    * A record construction.
@@ -91,11 +95,12 @@ export class MetalRecord<T extends MetalData> {
    * @param id - Record ID.
    * @param data - The record data.
    */
-  constructor(public collection: MetalCollection<T>,
+  constructor(public collection: C,
               public id: string,
               public data: T = {} as T) {
     this.href = `${collection.href}/${id}`;
     this.cref = `${this.href}/changes`;
+    this.path = new MetalPath(this);
 
     if (data.id) {
       this.status = 'ready';
@@ -109,8 +114,28 @@ export class MetalRecord<T extends MetalData> {
    * Initialize the record data.
    */
   public init(): this {
+    this._cached = true;
     this._loadCaches();
+    this.unStash();
     return this;
+  }
+
+  private _sync(): void {
+    this.status = 'sync';
+    this.statusChange.emit(this.status);
+  }
+
+  private _ready(): void {
+    this.status = 'ready';
+    this.statusChange.emit(this.status);
+  }
+
+  private _throw(error: MetalTransactionError<T>): void {
+    this._ready();
+    this.error = error;
+    this.errorChange.emit(error);
+
+    throw error;
   }
 
   /**
@@ -134,6 +159,10 @@ export class MetalRecord<T extends MetalData> {
    * @private
    */
   private _writeCache(): void {
+    if (!this._cached) {
+      return;
+    }
+
     const { persistentCache, memoryCache } = this.collection.configs;
 
     if (persistentCache) {
@@ -141,7 +170,7 @@ export class MetalRecord<T extends MetalData> {
     }
 
     if (memoryCache) {
-      StateStore.store(this.href).set(this.data);
+      StateStore.get(this.href).set(this.data);
     }
   }
 
@@ -154,10 +183,10 @@ export class MetalRecord<T extends MetalData> {
     if (!this.initialized) {
       if (fromState.data.id) {
         this.assign(fromState.data);
-      }
 
-      this.initialized = true;
-      this.status = 'ready';
+        this.initialized = true;
+        this._ready();
+      }
     }
   }
 
@@ -182,6 +211,10 @@ export class MetalRecord<T extends MetalData> {
    * Save the changed data into cache.
    */
   public stash(): this {
+    if (!this._cached) {
+      return this;
+    }
+
     const { persistentCache, memoryCache } = this.collection.configs;
 
     if (persistentCache) {
@@ -204,6 +237,7 @@ export class MetalRecord<T extends MetalData> {
     Object.assign(this.data, data);
     this.dataChange.emit(this.data);
     this._writeCache();
+    this.stash();
 
     return this;
   }
@@ -215,6 +249,7 @@ export class MetalRecord<T extends MetalData> {
     this.data = JSON.parse(JSON.stringify(this.mirror));
     this.dataChange.emit(this.data);
     this._writeCache();
+    this.stash();
     return this;
   }
 
@@ -304,11 +339,23 @@ export class MetalRecord<T extends MetalData> {
    * Save the local changes to the server by performing a PATCH request.
    * If the record doesn't have an ID, it'll perform a POST request.
    * @param options - Optional request options.
+   * @param sync - Mark the record as sync state.
    */
-  public async save(options?: MetalRequestOptions): Promise<this> {
+  public async save(options: MetalRequestOptions = {}, sync?: boolean): Promise<this> {
+    if (sync) {
+      this._sync();
+    }
+
     try {
+      if (!this.hasChanges) {
+        if (sync) {
+          this._ready();
+        }
+
+        return this;
+      }
+
       if (this.id) {
-        this.status = 'sync';
         this.stash();
 
         await this.collection.update(this.id, this.changes, options);
@@ -320,13 +367,15 @@ export class MetalRecord<T extends MetalData> {
         this.assign(data);
       }
 
-      this.status = 'ready';
-      this.statusChange.emit(this.status);
+      if (sync) {
+        this._ready();
+      }
     } catch (error) {
-      this.error = error;
-      this.errorChange.emit(error);
-      this.statusChange.emit(this.status);
-      throw error;
+      if (sync) {
+        this._throw(error);
+      } else {
+        throw error;
+      }
     }
 
     return this;
@@ -336,13 +385,20 @@ export class MetalRecord<T extends MetalData> {
    * Assign a new data to the existing data and perform a PATCH request.
    * @param payload - Data to be applied.
    * @param options - Optional request options.
+   * @param sync - Mark the record as sync state.
    */
-  public async update(payload: MetalPartialData<T>, options?: MetalRequestOptions): Promise<this> {
+  public async update(payload: MetalPartialData<T>, options: MetalRequestOptions = {}, sync?: boolean): Promise<this> {
     try {
       this.set(payload);
-      await this.save(options);
+      await this.save(options, sync);
     } catch (error) {
-      throw error;
+      this.reset();
+
+      if (sync) {
+        this._throw(error);
+      } else {
+        throw error;
+      }
     }
 
     return this;
@@ -351,17 +407,26 @@ export class MetalRecord<T extends MetalData> {
   /**
    * Delete the record on the server by performing a DELETE request.
    * @param options - Optional request options.
+   * @param sync - Mark the record as sync state.
    */
-  public async delete(options?: MetalRequestOptions): Promise<this> {
-    this.status = 'sync';
+  public async delete(options: MetalRequestOptions = {}, sync?: boolean): Promise<this> {
+    if (sync) {
+      this._sync();
+    }
 
     try {
       await this.collection.delete(this.id, options);
-      this.status = 'ready';
       this.deleted = true;
-      this.statusChange.emit(this.status);
+
+      if (sync) {
+        this._ready();
+      }
     } catch (error) {
-      throw error;
+      if (sync) {
+        this._throw(error);
+      } else {
+        throw error;
+      }
     }
 
     return this;
@@ -389,14 +454,12 @@ export class MetalRecord<T extends MetalData> {
           query: this.query,
         }
       });
+
       this.assign(data);
-      this.status = 'ready';
-      this.statusChange.emit(this.status);
+      this.initialized = true;
+      this._ready();
     } catch (error) {
-      this.error = error;
-      this.errorChange.emit(error);
-      this.statusChange.emit(this.status);
-      throw error;
+      this._throw(error);
     }
 
     return this;
@@ -451,8 +514,8 @@ export class MetalRecordList<T> extends Array<MetalRecord<T>> {
   /**
    * Returns an array of the selected records.
    */
-  public get selectedRecords(): MetalRecord<T>[] {
-    return this.filter(rec => rec.selected);
+  public get selectedRecords(): MetalRecordList<T> {
+    return this.filter(rec => rec.selected) as MetalRecordList<T>;
   }
 
   /**
@@ -467,6 +530,13 @@ export class MetalRecordList<T> extends Array<MetalRecord<T>> {
    */
   public get fewRecordsSelected(): boolean {
     return (this.selectedRecords.length >= 1 && this.selectedRecords.length < this.length);
+  }
+
+  /**
+   * Get the plain data list instead of a record list.
+   */
+  public get data(): T[] {
+    return [...this].map(record => record.data);
   }
 
   /**

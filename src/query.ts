@@ -34,7 +34,7 @@ import uuid from './uuid';
 /**
  * A Query object with a sets of helper methods to manage the filters and the cached data.
  */
-export class MetalQuery<T extends MetalData> {
+export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = MetalCollection<T>> {
   public href: string;
   public status: MetalQueryStatus = 'init';
   public statusChange: EventEmitter<this> = new EventEmitter<this>();
@@ -56,6 +56,22 @@ export class MetalQuery<T extends MetalData> {
   private _subscribers: EventHandler<RealtimeEvent<T>>[] = [];
   private _previousFilters: MetalQueryFilters<T> = {};
 
+  public get selectedData(): T[] {
+    return this.records.selectedRecords.data;
+  }
+
+  public get selectedRecords(): MetalRecordList<T> {
+    return this.records.selectedRecords;
+  }
+
+  public get allRecordsSelected(): boolean {
+    return this.records.allRecordsSelected;
+  }
+
+  public get fewRecordsSelected(): boolean {
+    return this.records.fewRecordsSelected;
+  }
+
   public get hasFilterChanges(): boolean {
     return Object.keys(this.filterChanges).length > 0;
   }
@@ -65,7 +81,7 @@ export class MetalQuery<T extends MetalData> {
   }
 
   constructor(public name: string,
-              public collection: MetalCollection<T>,
+              public collection: C,
               public filters: MetalQueryFilters<T> = {},
               public options: MetalQueryOptions = {}) {
     inherit('persistentCache', collection.configs, options);

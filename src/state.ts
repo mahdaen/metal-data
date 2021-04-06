@@ -154,6 +154,10 @@ export class MetalStateStore {
       console.error(error);
     }
   }
+
+  public async clearStore() {
+    return await localforage.clear();
+  }
 }
 
 export class MetalState<T extends object> {

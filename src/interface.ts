@@ -104,6 +104,7 @@ export type MetalRequestOptions<O = Optional, P = Optional> = {
   referrer?: MetalRequestReferrer;
   delay?: number;
   browse?: boolean;
+  reSync?: boolean;
 } & O;
 
 export interface MetalURLSegment {
@@ -219,6 +220,7 @@ export type MetalOriginConfig<C = Optional> = C & {
   persistentCache?: boolean;
   memoryCache?: boolean;
   syncDelay?: number;
+  schemaValidation?: 'strict' | 'typings';
 
   keepTransactions?: boolean;
   slowNetworkSimulation?: boolean;
@@ -237,26 +239,27 @@ export type MetalFindOptions<T, M = Optional> = MetalRequestOptions & {
 /**
  * A list of schema definitions.
  */
-export interface SchemaDefinitions {
-  [key: string]: SchemaDefinition;
-}
+export type SchemaDefinitions<T> = {
+  [K in keyof T]: SchemaDefinition | SchemaDefinitions<T[K]> | SchemaDefinitions<ItemTypeOf<T[K]>>;
+};
 
 /**
  * Schema definition to tell the validator how to process the data.
  */
 export interface SchemaDefinition {
   /** Expected value type of the property. **/
-  type: 'string' | 'date' | 'number' | 'object' | 'array' | 'boolean';
+  _type: 'string' | 'date' | 'number' | 'object' | 'array' | 'boolean' | 'enum';
+  _enums?: Array<string | number>;
   /** Tell the validator that the property is required and must be defined. **/
-  required?: boolean;
+  _required?: boolean;
   /** Tell the validator that the required property must be defined from the remote data, but ignored for the outgoing data. **/
-  generated?: boolean;
+  _generated?: boolean;
   /** Minimum value for number, minimum length for string. **/
-  min?: number;
+  _min?: number;
   /** Maximum value for number, maximum length for string. **/
-  max?: number;
+  _max?: number;
   /** Value to be set to the property if not defined by user. **/
-  default?: any | valueMaker;
+  _default?: any | valueMaker;
 }
 
 /**
@@ -265,13 +268,22 @@ export interface SchemaDefinition {
 export type valueMaker = (data: any) => any;
 
 /**
- * Error context as the information detail of the errors.
+ * Schema validation result.
  */
-export interface SchemaErrorContext {
-  [key: string]: {
-    expected: string,
-    given: any;
-  };
+export interface SchemaValidation {
+  _valid: boolean;
+  _expected?: string | number;
+  _given?: any;
+  _message?: string;
+  _value?: any;
+}
+
+export type SchemaValidations<T> = {
+  [K in keyof T]: SchemaValidation & SchemaValidations<T[K]>;
+} & SchemaValidation;
+
+export interface ItemSchemaValidations<T> extends Array<SchemaValidations<T>> {
+  _valid: boolean;
 }
 
 export type MetalCollectionConfig<T, C = Optional> = {
@@ -284,10 +296,12 @@ export type MetalCollectionConfig<T, C = Optional> = {
   relations?: MetalRelation;
   defaultLimit?: number;
   headers?: { [key: string]: any };
-  schemas?: SchemaDefinitions;
+  schemas?: SchemaDefinitions<T>;
+  strict?: boolean;
   noPatch?: boolean;
   persistentCache?: boolean;
   memoryCache?: boolean;
+  syncUpdate?: boolean;
   syncDelay?: number;
 } & C;
 
@@ -312,12 +326,12 @@ export interface MetalRelation {
   hasMany?: MetalHasManyRelation[];
 }
 
-export interface MetalQueriesState<T> {
-  [name: string]: MetalQuery<T>;
+export interface MetalQueriesState<T, C extends MetalCollection<T>> {
+  [name: string]: MetalQuery<T, C>;
 }
 
-export interface MetalRecordsState<T> {
-  [id: string]: MetalRecord<T>;
+export interface MetalRecordsState<T, C extends MetalCollection<T>> {
+  [id: string]: MetalRecord<T, C>;
 }
 
 export interface ModelRefValue {

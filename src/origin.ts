@@ -4,6 +4,7 @@ import { MetalDriver } from './driver';
 import {
   MetalActiveRequests,
   MetalData,
+  MetalDataListing,
   MetalMiddlewareCursor,
   MetalOriginConfig,
   MetalRequestConfig,
@@ -14,11 +15,12 @@ import {
 } from './interface';
 import { http } from './middlewares/http';
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
+import { SchemaError, validateItemSchemas, validateSchemas } from './schema';
 import { inherit } from './utils/object';
 import { sleep } from './utils/sleep';
 import uuid from './uuid';
 
-export class MetalOrigin {
+export class MetalOrigin<D extends MetalDriver = MetalDriver> {
   public name: string;
   public href: string;
   public transactions: MetalTransaction<MetalData | any>[] = [];
@@ -26,11 +28,11 @@ export class MetalOrigin {
   public socketConnected: boolean;
 
   protected readonly _socket: MetalEvent;
-  protected readonly _collections: MetalCollection<MetalData | any>[] = [];
+  protected readonly _collections: MetalCollection<MetalData & any, this>[] = [];
   protected readonly _requests: MetalActiveRequests = {};
   protected readonly _subscriptionQueue: Array<() => void> = [];
 
-  constructor(public driver: MetalDriver,
+  constructor(public driver: D,
               public configs: MetalOriginConfig) {
     inherit('persistentCache', driver.configs, configs);
     inherit('memoryCache', driver.configs, configs);
@@ -100,7 +102,7 @@ export class MetalOrigin {
    * a collection instance to register it.
    * @param collection - Collection name or collection instance.
    */
-  public collection<T extends MetalData>(collection: string | MetalCollection<T>): MetalCollection<T> {
+  public collection<T extends MetalData>(collection: string | MetalCollection<T, this>): MetalCollection<T, this> {
     if (typeof collection === 'string') {
       return this.getCollection(collection);
     } else {
@@ -112,7 +114,7 @@ export class MetalOrigin {
    * Method to add/register a collection instance.
    * @param collection
    */
-  public addCollection<T extends MetalData>(collection: MetalCollection<T>): MetalCollection<T> {
+  public addCollection<T extends MetalData>(collection: MetalCollection<T, this>): MetalCollection<T, this> {
     if (!this.getCollection(collection.name)) {
       this._collections.push(collection);
     }
@@ -124,7 +126,7 @@ export class MetalOrigin {
    * Method to get a collection instance.
    * @param name
    */
-  public getCollection<T extends MetalData>(name: string): MetalCollection<T> {
+  public getCollection<T extends MetalData>(name: string): MetalCollection<T, this> {
     for (const collection of this._collections) {
       if (collection.name === name) {
         return collection;
@@ -292,6 +294,8 @@ export class MetalOrigin {
    * @param payload - Optional request payload, applicable for POST, PUT, and PATCH requests.
    */
   public async request<R, P>(req: MetalRequest, payload?: P): Promise<MetalTransaction<R>> {
+    let reqKey;
+
     try {
       const configs: MetalRequestConfig = {
         url: req.url,
@@ -304,7 +308,7 @@ export class MetalOrigin {
         configs.data = payload;
       }
 
-      const reqKey = JSON.stringify(configs);
+      reqKey = JSON.stringify(configs);
       if (this._requests[reqKey]) {
         const trx = this._requests[reqKey];
         console.warn(`Duplicate request found: ${reqKey}`);
@@ -360,13 +364,13 @@ export class MetalOrigin {
 
       delete this._requests[reqKey];
 
+      this._validate<R>(transaction);
+
       this.driver.transactionChange.emit(transaction);
       return transaction;
     } catch (error) {
-      for (const [key, trx] of Object.entries(this._requests)) {
-        if (trx === error.transaction) {
-          delete this._requests[key];
-        }
+      if (typeof reqKey === 'string') {
+        delete this._requests[reqKey];
       }
 
       if (typeof this.handleError === 'function') {
@@ -411,6 +415,27 @@ export class MetalOrigin {
       ...options,
       headers: { ...(this.configs.headers || {}), ...(headers || {}) }
     } as any);
+  }
+
+  private _validate<R>(transaction: MetalTransaction<R | MetalDataListing<R>>) {
+    const { schemaValidation } = this.configs;
+    const { request, response } = transaction;
+    const { configs, listing } = request;
+    const { schemas, strict } = configs;
+
+    if (schemas) {
+      let validation;
+
+      if (listing) {
+        validation = validateItemSchemas(schemas, (response.data as any).data, strict);
+      } else {
+        validation = validateSchemas(schemas, response.data, strict);
+      }
+
+      if (schemaValidation === 'strict' && !validation._valid) {
+        throw new SchemaError(validation);
+      }
+    }
   }
 
   /**

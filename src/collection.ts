@@ -13,24 +13,33 @@ import {
   MetalRecordsState,
   MetalRequestMethod,
   MetalRequestOptions,
-  MetalRequestParams,
-  SchemaErrorContext
+  MetalRequestParams
 } from './interface';
 import { MetalOrigin } from './origin';
+import { MetalPath } from './path';
 import { filterToQueryParams, MetalQuery } from './query';
 import { MetalDataList, MetalRecord, MetalRecordList } from './record';
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
-import { SchemaError } from './schema';
+import { SchemaError, validateSchemas } from './schema';
 import { inherit } from './utils/object';
 import { typeOf } from './utils/typeof';
 
-export class MetalCollection<T extends MetalData> {
+interface MetalCollectionRequestConfig<T> {
+  id?: string;
+  filters?: MetalQueryFilters<T>;
+  payload?: MetalPartialData<T>;
+  options?: MetalRequestOptions;
+  returnTransaction?: boolean;
+}
+
+export class MetalCollection<T extends MetalData, O extends MetalOrigin = MetalOrigin> {
   public name: string;
   public href: string;
-  public queries: MetalQueriesState<T> = {};
-  public records: MetalRecordsState<T> = {};
+  public path: MetalPath;
+  public queries: MetalQueriesState<T, this> = {};
+  public records: MetalRecordsState<T, this> = {};
 
-  constructor(public origin: MetalOrigin,
+  constructor(public origin: O,
               public configs: MetalCollectionConfig<T>) {
     inherit('persistentCache', origin.configs, configs);
     inherit('memoryCache', origin.configs, configs);
@@ -38,6 +47,7 @@ export class MetalCollection<T extends MetalData> {
 
     this.name = configs.name;
     this.href = `${this.origin.href}${configs.name}`;
+    this.path = new MetalPath(this);
     this.origin.collection(this);
   }
 
@@ -46,7 +56,7 @@ export class MetalCollection<T extends MetalData> {
    * it'll init a new record.
    * @param id - Record ID.
    */
-  public get(id: string): MetalRecord<T> {
+  public get(id: string): MetalRecord<T, this> {
     if (this.configs.memoryCache) {
       if (!this.records[id]) {
         this.records[id] = this.createRecord(id);
@@ -58,8 +68,8 @@ export class MetalCollection<T extends MetalData> {
     return this.createRecord(id).init();
   }
 
-  public query(filters?: MetalQueryFilters<T>, options?: MetalQueryOptions): MetalQuery<T>;
-  public query(name: string, filters?: MetalQueryFilters<T>, options?: MetalQueryOptions): MetalQuery<T>;
+  public query(filters?: MetalQueryFilters<T>, options?: MetalQueryOptions): MetalQuery<T, this>;
+  public query(name: string, filters?: MetalQueryFilters<T>, options?: MetalQueryOptions): MetalQuery<T, this>;
   /**
    * Get a query from the collection. If no cached query for the specific name, it'll init a new Query.
    * @param name - Query name for a named query, or query filters to get a general query.
@@ -68,7 +78,7 @@ export class MetalCollection<T extends MetalData> {
    */
   public query(name?: string | MetalQueryFilters<T>,
                filters?: MetalQueryFilters<T> | MetalQueryOptions,
-               options?: MetalQueryOptions): MetalQuery<T> {
+               options?: MetalQueryOptions): MetalQuery<T, this> {
     if (typeof name === 'string') {
       if (this.configs.memoryCache) {
         if (!this.queries[name]) {
@@ -77,7 +87,7 @@ export class MetalCollection<T extends MetalData> {
 
         return this.queries[name];
       } else {
-        return new MetalQuery<T>(name, this, filters, options);
+        return new MetalQuery(name, this, filters, options);
       }
     } else {
       return this.query('general', name, filters);
@@ -89,7 +99,7 @@ export class MetalCollection<T extends MetalData> {
    * @param id - Record ID.
    * @param data - Data to be converted to a Record instance.
    */
-  public createRecord(id: string, data?: T): MetalRecord<T> {
+  public createRecord(id: string, data?: T): MetalRecord<T, this> {
     const record = new MetalRecord(this, id, data);
     this.transformRelation(record);
     return record;
@@ -294,9 +304,9 @@ export class MetalCollection<T extends MetalData> {
    */
   public async update(id: string, payload: MetalPartialData<T>, options?: MetalRequestOptions): Promise<void> {
     try {
-      this.ensureSchema(payload, false, true);
+      this.ensureSchema(payload, true);
 
-      const req = this.createRecordRequest(id, this.configs.noPatch ? 'put' : 'patch', {
+      const req = this.createRecordRequest(id, 'patch', {
         payload: { id, ...payload },
         ...(options || {})
       });
@@ -305,9 +315,13 @@ export class MetalCollection<T extends MetalData> {
         await this.beforeUpdate(id, payload, req);
       }
 
-      const res = await this.origin[this.configs.noPatch ? 'put' : 'patch']<T, MetalPartialData<T>>(req, payload);
+      const res = await this.origin.patch<T, MetalPartialData<T>>(req, payload);
 
-      if (this.records[id] && this.records[id].status !== 'sync') {
+      if (
+        (this.configs.syncUpdate || (options && options.reSync)) &&
+        this.records[id] &&
+        this.records[id].status !== 'sync'
+      ) {
         this.records[id].fetch().catch(console.error);
       }
 
@@ -380,6 +394,42 @@ export class MetalCollection<T extends MetalData> {
   }
 
   /**
+   * Perform a general request for the collection endpoint. Please note that
+   * this method doesn't call any hook such transformResponse.
+   * @param method - Request method.
+   * @param id - Optional record id.
+   * @param payload - Optional request payload.
+   * @param filters - Optional request filters.
+   * @param options - Optional request options.
+   * @param returnTransaction - Optional to return the transaction object instead of the response data.
+   */
+  public async request<R>(method: MetalRequestMethod, {
+    id,
+    payload,
+    filters = {},
+    options = {},
+    returnTransaction
+  }: MetalCollectionRequestConfig<T>): Promise<MetalTransaction<R> | R> {
+    try {
+      const req = id ? this.createRecordRequest(id, method, options) :
+        this.createRequest(method, filters, options);
+      const trx = await this.origin.request<R, MetalPartialData<T>>(req, payload);
+
+      if (returnTransaction) {
+        return trx;
+      }
+
+      return trx.response.data;
+    } catch (error) {
+      if (typeof this.handleError === 'function') {
+        await this.handleError(error);
+      }
+
+      throw error;
+    }
+  }
+
+  /**
    * Identify allowed request methods.
    * @param options - Optional request options.
    */
@@ -425,66 +475,17 @@ export class MetalCollection<T extends MetalData> {
   /**
    * Private method to validate the schema.
    * @param data
-   * @param remote
    * @param partial
    * @private
    */
-  private ensureSchema<D>(data: D | T, remote?: boolean, partial?: boolean) {
-    if (this.configs.schemas) {
-      const errContext: SchemaErrorContext = {};
+  private ensureSchema<D>(data: D | T, partial?: boolean): void {
+    const { schemas, strict } = this.configs;
 
-      for (const [key, value] of Object.entries(data)) {
-        if (!this.configs.schemas[key]) {
-          errContext[key] = { expected: 'Undefined', given: value };
-        }
-      }
+    if (schemas) {
+      const validation = validateSchemas(schemas, data, strict, partial);
 
-      for (const [key, definition] of Object.entries(this.configs.schemas)) {
-        if (data.hasOwnProperty(key)) {
-          if (definition.type !== typeOf(data[key])) {
-            errContext[key] = { expected: definition.type, given: data[key] };
-          }
-
-          if (definition.type === 'string' && definition.min && data[key].length < definition.min) {
-            errContext[key] = { expected: `More than ${definition.min} characters`, given: data[key].length };
-          }
-
-          if (definition.type === 'string' && definition.max && data[key].length > definition.max) {
-            errContext[key] = { expected: `Less than ${definition.min} characters`, given: data[key].length };
-          }
-
-          if (definition.type === 'number' && definition.min && data[key] < definition.min) {
-            errContext[key] = { expected: `More than ${definition.min}`, given: data[key] };
-          }
-
-          if (definition.type === 'number' && definition.max && data[key] > definition.max) {
-            errContext[key] = { expected: `Less than ${definition.min}`, given: data[key] };
-          }
-        } else {
-          if (!partial) {
-            if (definition.default) {
-              if (typeof definition.default === 'function') {
-                (data as any)[key] = definition.default(key);
-              } else {
-                (data as any)[key] = definition.default;
-              }
-            } else {
-              if (remote) {
-                if (definition.required) {
-                  errContext[key] = { expected: definition.type, given: undefined };
-                }
-              } else {
-                if (definition.required && !definition.generated) {
-                  errContext[key] = { expected: definition.type, given: undefined };
-                }
-              }
-            }
-          }
-        }
-      }
-
-      if (Object.keys(errContext).length) {
-        throw new SchemaError(errContext);
+      if (!validation._valid) {
+        throw new SchemaError(validation);
       }
     }
   }
