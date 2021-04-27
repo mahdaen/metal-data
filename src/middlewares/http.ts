@@ -14,7 +14,7 @@ export function http(configs: AxiosRequestConfig) {
             const { message, response } = error as AxiosError;
             const { status, statusText } = response;
 
-            throw new MetalTransactionError(response, message, status, statusText);
+            throw new MetalTransactionError(trx.request, response, message, status, statusText);
           }
         });
 

@@ -32,7 +32,9 @@ interface MetalCollectionRequestConfig<T> {
   returnTransaction?: boolean;
 }
 
-export class MetalCollection<T extends MetalData, O extends MetalOrigin = MetalOrigin> {
+export class MetalCollection<T extends MetalData,
+  O extends MetalOrigin = MetalOrigin,
+  C extends MetalCollectionConfig<T> = MetalCollectionConfig<T>> {
   public name: string;
   public href: string;
   public path: MetalPath;
@@ -40,7 +42,7 @@ export class MetalCollection<T extends MetalData, O extends MetalOrigin = MetalO
   public records: MetalRecordsState<T, this> = {};
 
   constructor(public origin: O,
-              public configs: MetalCollectionConfig<T>) {
+              public configs: C) {
     inherit('persistentCache', origin.configs, configs);
     inherit('memoryCache', origin.configs, configs);
     inherit('syncDelay', origin.configs, configs);

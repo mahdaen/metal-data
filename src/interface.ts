@@ -286,7 +286,7 @@ export interface ItemSchemaValidations<T> extends Array<SchemaValidations<T>> {
   _valid: boolean;
 }
 
-export type MetalCollectionConfig<T, C = Optional> = {
+export type MetalCollectionConfig<T> = {
   name: string;
 
   endpoint: string;
@@ -303,7 +303,7 @@ export type MetalCollectionConfig<T, C = Optional> = {
   memoryCache?: boolean;
   syncUpdate?: boolean;
   syncDelay?: number;
-} & C;
+};
 
 export interface MetalBelongsToRelation {
   name: string;

@@ -54,7 +54,8 @@ export class MetalTransaction<D> {
 }
 
 export class MetalTransactionError<D> extends Error {
-  constructor(public response: MetalResponse<D>,
+  constructor(public request: MetalRequest,
+              public response: MetalResponse<D>,
               public message: string,
               public code: number,
               public statusText?: string) {

@@ -202,7 +202,7 @@ export class MetalOrigin<D extends MetalDriver = MetalDriver> {
                                         payload: D,
                                         options?: MetalRequestOptions<O>): Promise<MetalTransaction<R>> {
     if (reqUrl instanceof MetalRequest) {
-      return await this.request(reqUrl, options);
+      return await this.request(reqUrl, payload);
     } else {
       const request = new MetalRequest('post', {}, options);
       request.append({ type: 'record', path: reqUrl });
