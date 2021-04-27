@@ -102,6 +102,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metaltransactionerror.html#code" class="tsd-kind-icon">code</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metaltransactionerror.html#message" class="tsd-kind-icon">message</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="metaltransactionerror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metaltransactionerror.html#request" class="tsd-kind-icon">request</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metaltransactionerror.html#response" class="tsd-kind-icon">response</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="metaltransactionerror.html#stack" class="tsd-kind-icon">stack</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="metaltransactionerror.html#statustext" class="tsd-kind-icon">status<wbr>Text</a></li>
@@ -124,13 +125,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Metal<wbr>Transaction<wbr>Error&lt;D&gt;<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><a href="../interfaces/metalresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">MetalResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, statusText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metaltransactionerror.html" class="tsd-signature-type" data-tsd-kind="Class">MetalTransactionError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Metal<wbr>Transaction<wbr>Error&lt;D&gt;<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="metalrequest.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRequest</a>, response<span class="tsd-signature-symbol">: </span><a href="../interfaces/metalresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">MetalResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, statusText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metaltransactionerror.html" class="tsd-signature-type" data-tsd-kind="Class">MetalTransactionError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/6762adb/src/request.ts#L56">src/request.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/mahdaen/metal-data/blob/01f55a6/src/request.ts#L56">src/request.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -141,6 +142,9 @@
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>request: <a href="metalrequest.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRequest</a></h5>
+								</li>
 								<li>
 									<h5>response: <a href="../interfaces/metalresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">MetalResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
@@ -183,6 +187,13 @@
 						<ul>
 							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:973</li>
 						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="request" class="tsd-anchor"></a>
+					<h3>request</h3>
+					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <a href="metalrequest.html" class="tsd-signature-type" data-tsd-kind="Class">MetalRequest</a></div>
+					<aside class="tsd-sources">
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
@@ -325,6 +336,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="metaltransactionerror.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="metaltransactionerror.html#request" class="tsd-kind-icon">request</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="metaltransactionerror.html#response" class="tsd-kind-icon">response</a>
