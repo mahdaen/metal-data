@@ -3,11 +3,19 @@ import * as _ from 'lodash';
 import { EventEmitter } from './event';
 import { PartialState } from './interface';
 
+const version = '1.0.0';
+
 localforage.config({
   name: 'metal-data',
   storeName: 'states',
   description: 'Metal Data state storage.'
 });
+
+const currentVersion = localStorage.getItem('metal-version');
+if (currentVersion !== version) {
+  localforage.clear();
+  localStorage.setItem('metal-version', version);
+}
 
 declare var window: {
   MetalStateStore: MetalStateStore;

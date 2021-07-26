@@ -107,7 +107,7 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
       this.initialized = true;
     }
 
-    this.mirror = JSON.parse(JSON.stringify(data));
+    this.mirror = JSON.parse(JSON.stringify(id ? data : {}));
   }
 
   /**
@@ -363,8 +363,18 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
         this.mirror = JSON.parse(JSON.stringify(this.data));
         this._writeCache();
       } else {
-        const data = await this.collection.create(this.data, options);
-        this.assign(data);
+        this.status = 'post';
+        this.statusChange.emit(this.status);
+
+        try {
+          const data = await this.collection.create(this.data, options);
+          this.assign(data);
+        } catch (error) {
+          throw error;
+        }
+
+        this.status = 'ready';
+        this.statusChange.emit(this.status);
       }
 
       if (sync) {

@@ -16,14 +16,14 @@ export function filterRefMap<T>(refs: MetalQueryFilterRefs<T>): MappedFilterRefs
   for (const [key, value] of Object.entries(refs) as any) {
     if (typeOf(value) === 'object') {
       if (value._type) {
-        const { _type, _label, _required, _exclude } = value as any;
-        mappedRefs.push({ _type, _label, _required, _exclude, _path: key });
+        const { _type, _label, _required, _exclude, _translations = {}, _humanize, _uppercase } = value as any;
+        mappedRefs.push({ _type, _label, _required, _exclude, _translations, _humanize, _uppercase, _path: key });
       }
 
       const subRefs = filterRefMap(value as any);
       if (subRefs.length) {
-        mappedRefs.push(...subRefs.map(({ _type, _path, _label, _required, _exclude }) => {
-          return { _type, _label, _required, _exclude, _path: `${key}.${_path}` };
+        mappedRefs.push(...subRefs.map(({ _type, _path, _label, _required, _exclude, _translations, _humanize, _uppercase }) => {
+          return { _type, _label, _required, _exclude, _translations, _humanize, _uppercase, _path: `${key}.${_path}` };
         }));
       }
     }
@@ -124,10 +124,12 @@ export function decodeFiltersFromURL<T>(url?: string): MetalQueryFilters<T> {
   const filters: MetalQueryFilters<T> = {};
 
   for (const ref of refs) {
-    if (['page', 'limit', 'search'].includes(ref.key)) {
-      _.set(filters, ref.key, ref.value);
-    } else {
-      _.set(filters, `where.${ref.key}`, ref.value);
+    if (!ref.key.startsWith('__')) {
+      if (['page', 'limit', 'search'].includes(ref.key)) {
+        _.set(filters, ref.key, ref.value);
+      } else {
+        _.set(filters, `where.${ref.key}`, ref.value);
+      }
     }
   }
 

@@ -332,14 +332,14 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
     return this;
   }
 
-  public params(params: MetalRequestParams): this;
-  public params(params: MetalRequestParams, fetch?: boolean): Promise<MetalRecordList<T>>;
+  public params<P extends MetalRequestParams = MetalRequestParams>(params: P): this;
+  public params<P extends MetalRequestParams = MetalRequestParams>(params: P, fetch?: boolean): Promise<MetalRecordList<T>>;
   /**
    * Apply a new Request Params.
    * @param params
    * @param fetch
    */
-  public params(params: MetalRequestParams, fetch?: boolean): this | Promise<MetalRecordList<T>> {
+  public params<P extends MetalRequestParams = MetalRequestParams>(params: P, fetch?: boolean): this | Promise<MetalRecordList<T>> {
     this.filters.params = params;
 
     if (fetch) {

@@ -21,6 +21,7 @@ import { filterToQueryParams, MetalQuery } from './query';
 import { MetalDataList, MetalRecord, MetalRecordList } from './record';
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
 import { SchemaError, validateSchemas } from './schema';
+import { StateStore } from './state';
 import { inherit } from './utils/object';
 import { typeOf } from './utils/typeof';
 
@@ -40,6 +41,7 @@ export class MetalCollection<T extends MetalData,
   public path: MetalPath;
   public queries: MetalQueriesState<T, this> = {};
   public records: MetalRecordsState<T, this> = {};
+  public forms: MetalRecordsState<T, this>;
 
   constructor(public origin: O,
               public configs: C) {
@@ -51,6 +53,7 @@ export class MetalCollection<T extends MetalData,
     this.href = `${this.origin.href}${configs.name}`;
     this.path = new MetalPath(this);
     this.origin.collection(this);
+    this.forms = StateStore.get<MetalRecordsState<T, this>>(`${this.href}.forms`).data;
   }
 
   /**
@@ -98,13 +101,39 @@ export class MetalCollection<T extends MetalData,
 
   /**
    * Create a Record instance from a plain data.
+   * @param data - Data to be converted to a Record instance.
+   */
+  public createRecord(data?: T): MetalRecord<T, this>;
+  /**
+   * Create a Record instance from a plain data.
    * @param id - Record ID.
    * @param data - Data to be converted to a Record instance.
    */
-  public createRecord(id: string, data?: T): MetalRecord<T, this> {
-    const record = new MetalRecord(this, id, data);
+  public createRecord(id?: string, data?: T): MetalRecord<T, this>;
+  public createRecord(idData?: string | T, data?: T): MetalRecord<T, this> {
+    let record;
+
+    if (typeof idData === 'string') {
+      record = new MetalRecord(this, idData, data);
+    } else {
+      record = new MetalRecord(this, null, idData);
+    }
+
     this.transformRelation(record);
     return record;
+  }
+
+  /**
+   * Create an empty record as a form data.
+   * @param name - Name to identify the cache data.
+   * @param data - Initial data to assign.
+   */
+  public createForm(name = 'global', data?: T): MetalRecord<T, this> {
+    if (!this.forms[name]) {
+      this.forms[name] = new MetalRecord(this, null, data);
+    }
+
+    return this.forms[name];
   }
 
   public async head(filters?: MetalQueryFilters<T>,
@@ -269,6 +298,7 @@ export class MetalCollection<T extends MetalData,
       this.ensureSchema(payload);
 
       const req = this.createRequest('post', null, options);
+      this.transformRelationRequest(req, payload);
 
       if (typeof this.transformRequest === 'function') {
         this.transformRequest(req);
@@ -556,18 +586,19 @@ export class MetalCollection<T extends MetalData,
   /**
    * Private method to transform the relation request.
    * @param request
+   * @param payload
    * @private
    */
-  private transformRelationRequest(request: MetalRequest) {
+  private transformRelationRequest(request: MetalRequest, payload?: T) {
     if (this.configs.relations && this.configs.relations.belongsTo) {
-      const { params = {} } = request;
+      const params = JSON.parse(JSON.stringify(request.params || {}));
       const { where = {} } = params;
       for (const { name, foreignKey } of this.configs.relations.belongsTo) {
-        if (where[foreignKey] || params[foreignKey]) {
+        if (where[foreignKey] || params[foreignKey] || (payload && payload[foreignKey])) {
           const collection = this.origin.getCollection(name);
 
           if (collection) {
-            const collectionId = where[foreignKey] || params[foreignKey];
+            const collectionId = where[foreignKey] || params[foreignKey] || (payload || {})[foreignKey];
             if (typeof collectionId === 'string') {
               request.relationships[foreignKey] = collectionId;
 
@@ -673,7 +704,7 @@ export class MetalCollection<T extends MetalData,
         }
 
         for (const property of Object.keys(record)) {
-          if (property !== 'id' && !selected[property]) {
+          if (property !== 'id' && !selected.hasOwnProperty(property)) {
             delete record[property];
           }
         }

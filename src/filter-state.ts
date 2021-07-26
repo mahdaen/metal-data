@@ -131,11 +131,16 @@ export class MetalFilterState<T> {
     return this;
   }
 
-  public clear(): this {
+  public clear(apply = true): this {
     for (const ref of this.activeModelRefs) {
       _.set(this.model, ref.key, undefined);
     }
-    return this.apply();
+
+    if (apply) {
+      return this.apply();
+    }
+
+    return this;
   }
 
   public applyParentMetas() {
@@ -395,7 +400,15 @@ export class MetalFilterState<T> {
     return modelRefMap(this.model)
       .map(({ key, value }) => {
         const ref: MetalModelRef = _.get(this.modelRef, key) || {};
-        return { key, value, type: ref._type, label: ref._label };
+        return {
+          key,
+          value,
+          type: ref._type,
+          label: ref._label,
+          translations: ref._translations,
+          humanize: ref._humanize,
+          uppercase: ref._uppercase,
+        };
       })
       .sort((a, b) => {
         return this.activeModelRefKeys.indexOf(a.key) - this.activeModelRefKeys.indexOf(b.key);

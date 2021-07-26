@@ -5,7 +5,7 @@ import { MetalQueue } from './queue';
 import { MetalDataList, MetalRecord, MetalRecordList } from './record';
 import { MetalTransaction } from './request';
 
-// tslint:disable-next-line:no-empty-interface
+// tslint:disable-next-line:no-empty-interface.
 export interface Optional {}
 
 export interface MetalFilterRef {
@@ -22,6 +22,11 @@ export interface MetalQueryFilterRef {
   _label?: string;
   _required?: boolean;
   _exclude?: boolean;
+  _translations?: {
+    [key: string]: string;
+  };
+  _humanize?: boolean;
+  _uppercase?: boolean;
 }
 
 export type MetalQueryFilterRefs<T> = {
@@ -210,7 +215,7 @@ export interface MetalData {
 export type MetalPartialData<T extends MetalData> = {
   [K in keyof T]?: T[K] | MetalPartialData<T[K]>;
 };
-export type MetalRecordState = 'init' | 'ready' | 'sync';
+export type MetalRecordState = 'init' | 'ready' | 'sync' | 'post';
 export type MetalOriginConfig<C = Optional> = C & {
   name: string;
   baseURL: string;
@@ -234,6 +239,9 @@ export type MetalFindOptions<T, M = Optional> = MetalRequestOptions & {
   fields?: Fields<T>;
   excludeFields?: Fields<T>;
   meta?: MetalDataMeta<M>;
+  params?: {
+    [key: string]: MetalRequestParam
+  }
 };
 
 /**
@@ -352,6 +360,11 @@ export interface MappedFilterRefs {
   _label?: string;
   _required?: boolean;
   _exclude?: boolean;
+  _translations?: {
+    [key: string]: string
+  };
+  _humanize?: boolean;
+  _uppercase?: boolean;
 }
 
 export interface MappedDataRef {
@@ -359,6 +372,11 @@ export interface MappedDataRef {
   value: any;
   type?: MetalQueryFilterRefType;
   label?: string;
+  translations?: {
+    [key: string]: string
+  };
+  humanize?: boolean;
+  uppercase?: boolean;
 }
 
 export interface MetalModelRef extends MappedFilterRefs {
