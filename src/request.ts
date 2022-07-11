@@ -100,7 +100,11 @@ export class MetalRequest {
 
   constructor(public method: MetalRequestMethod,
               public params: MetalRequestParams = {},
-              public options: MetalRequestOptions = {}) {}
+              public options: MetalRequestOptions = {}) {
+    if (options.headers) {
+      Object.assign(this.headers, options.headers);
+    }
+  }
 
   /**
    * Append a URL segments.

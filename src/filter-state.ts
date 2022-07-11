@@ -33,6 +33,7 @@ export class MetalFilterState<T> {
   public activeModelChange: EventEmitter<MappedDataRef[]> = new EventEmitter<MappedDataRef[]>();
   public transformModelRefs: (ref: MetalModelRefs<T>, refs: MetalModelRef[]) => void;
   public transformActiveModelRefs: (refs: MappedDataRef[]) => void;
+  public readyChange: EventEmitter<this> = new EventEmitter<this>();
 
   public pushLocationStrategy: 'push' | 'replace' = 'replace';
 
@@ -40,10 +41,10 @@ export class MetalFilterState<T> {
 
   constructor(public parentQuery: MetalQuery<T>) {
     const { filters, collection, name } = parentQuery;
-    const { filterRefs, limit } = filters;
+    const { filterRefs, limit, params } = JSON.parse(JSON.stringify(filters));
 
     this.query = collection.query(`${name}.head`, {
-      filterRefs, limit
+      filterRefs, limit, params
     });
 
     this._cache = StateStore.get(`${this.query.href}.filter`);
@@ -53,9 +54,13 @@ export class MetalFilterState<T> {
   }
 
   public init(): this {
-    const { model, activeModelRefKeys } = this._cache.data;
+    const { model, modelRef, activeModelRefKeys } = this._cache.data;
 
-    if (model) {
+    if (modelRef) {
+      if (!model && this.parentQuery.filters.where) {
+        _.merge(this.model, this.parentQuery.filters.where);
+      }
+
       this.encodeModelURI();
 
       this.status = 'ready';
@@ -75,6 +80,7 @@ export class MetalFilterState<T> {
       this._fetchRefs();
     }
 
+    this.readyChange.emit(this);
     return this;
   }
 
@@ -90,7 +96,7 @@ export class MetalFilterState<T> {
     return this;
   }
 
-  public apply(reset = true): this {
+  public apply(reset = true, fetch = true): this {
     if (reset) {
       this.parentQuery.filters.page = 1;
     }
@@ -106,7 +112,12 @@ export class MetalFilterState<T> {
 
     this.pushLocationStrategy = 'replace';
     this._writeCache();
-    return this.fetch();
+
+    if (fetch) {
+      return this.fetch();
+    }
+
+    return this;
   }
 
   public remove(key: string): this {
@@ -140,6 +151,11 @@ export class MetalFilterState<T> {
       return this.apply();
     }
 
+    return this;
+  }
+
+  public clearCache(): this {
+    this._cache.set({} as any);
     return this;
   }
 
@@ -188,7 +204,8 @@ export class MetalFilterState<T> {
 
     this.encodedModelURI = encodeModelURI(sourceRefs);
 
-    return this._exportActiveModelURI();
+    // return this._exportActiveModelURI();
+    return this;
   }
 
   public decodeModelURI(uri?: string) {
@@ -318,8 +335,11 @@ export class MetalFilterState<T> {
       activeFilterRefs = {}
     } = this._cache.data;
 
-    if (model) {
-      _.merge(this.model, model);
+    if (modelRef) {
+      if (model) {
+        _.merge(this.model, model);
+      }
+
       _.merge(this.modelRef, modelRef);
 
       this.modelRefs.forEach((ref, i) => {
@@ -358,6 +378,7 @@ export class MetalFilterState<T> {
   private _buildActiveFilterRefs(): this {
     const refKey = this.activeModelRefs.map(ref => `${ref.key}=${ref.value}`).join('&');
     this.activeFilterRefs[refKey] = JSON.stringify(this.modelRefs);
+    this.stateChange.emit(this);
 
     return this;
   }
@@ -454,7 +475,7 @@ export class MetalFilterState<T> {
     return this;
   }
 
-  private _exportActiveModelURI(): this {
+  public exportActiveModelURI(): this {
     const method = this.pushLocationStrategy === 'replace' ? 'replaceState' : 'pushState';
     const state = {
       name: 'metal-filter',

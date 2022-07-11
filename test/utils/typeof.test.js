@@ -1,4 +1,4 @@
-const { typeOf } = require('../../dist/utils/typeof');
+import { typeOf } from '../../dist/utils/typeof';
 
 test('typeOf string', () => {
   expect(typeOf('')).toEqual('string');

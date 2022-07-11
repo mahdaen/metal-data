@@ -1,4 +1,4 @@
-const { diff, compare } = require('../../dist/utils/diff');
+import { diff, compare } from '../../dist/utils/diff';
 
 const a = {
   a: 1,

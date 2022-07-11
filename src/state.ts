@@ -3,7 +3,14 @@ import * as _ from 'lodash';
 import { EventEmitter } from './event';
 import { PartialState } from './interface';
 
-const version = '1.0.0';
+declare var window: {
+  MetalStateStore: MetalStateStore;
+  localForage: LocalForage;
+  METAL_VERSION: string;
+};
+
+const version = window.METAL_VERSION || '1.0.0';
+const storageKey = 'metal-states';
 
 localforage.config({
   name: 'metal-data',
@@ -13,16 +20,12 @@ localforage.config({
 
 const currentVersion = localStorage.getItem('metal-version');
 if (currentVersion !== version) {
-  localforage.clear();
+  localStorage.setItem(storageKey, '{}');
   localStorage.setItem('metal-version', version);
+
+  localforage.clear();
 }
 
-declare var window: {
-  MetalStateStore: MetalStateStore;
-  localForage: LocalForage;
-};
-
-const storageKey = 'metal-states';
 let browserState = localStorage.getItem(storageKey) || '{}';
 
 export class MetalStateStore {

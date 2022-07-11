@@ -22,7 +22,16 @@ export function filterRefMap<T>(refs: MetalQueryFilterRefs<T>): MappedFilterRefs
 
       const subRefs = filterRefMap(value as any);
       if (subRefs.length) {
-        mappedRefs.push(...subRefs.map(({ _type, _path, _label, _required, _exclude, _translations, _humanize, _uppercase }) => {
+        mappedRefs.push(...subRefs.map(({
+                                          _type,
+                                          _path,
+                                          _label,
+                                          _required,
+                                          _exclude,
+                                          _translations,
+                                          _humanize,
+                                          _uppercase
+                                        }) => {
           return { _type, _label, _required, _exclude, _translations, _humanize, _uppercase, _path: `${key}.${_path}` };
         }));
       }
@@ -68,8 +77,16 @@ export function encodeModelURI(refs: MappedDataRef[]): string {
   return refs
     .map(ref => {
       if (ref.type === 'multiple') {
+        if (!Array.isArray(ref.value)) {
+          ref.value = [ref.value];
+        }
+
         return `${ref.key}=[${ref.value.join(',')}]`;
       } else if (ref.type === 'range') {
+        if (!Array.isArray(ref.value)) {
+          ref.value = [ref.value];
+        }
+
         return `${ref.key}=${ref.value.map(val => `<${val}>`).join('')}`;
       } else {
         return `${ref.key}=${ref.value}`;
@@ -79,39 +96,56 @@ export function encodeModelURI(refs: MappedDataRef[]): string {
 }
 
 export function decodeModelURI(uri: string): MappedDataRef[] {
-  return uri
+  const segments = uri
     .split('&')
-    .filter(segment => segment)
+    .filter(part => part)
     .map(segment => {
       const [key, value] = segment.split('=');
-
-      if (value.startsWith('~')) {
-        // Compatibility with the old array filter format.
-        return {
-          key: `${key}.inq`,
-          type: 'multiple',
-          value: value.replace(/^~/, '').split(/\s?,\s?/).map(v => strToType(v))
-        };
-      } else if (value.startsWith('[') && value.endsWith(']')) {
-        return {
-          key: `${key}.inq`,
-          type: 'multiple',
-          value: value.replace(/^\[/, '').replace(/]$/, '').split(/\s?,\s?/).map(v => strToType(v))
-        };
-      } else if (value.startsWith('<') && value.endsWith('>')) {
-        return {
-          key: `${key}.between`,
-          type: 'range',
-          value: value.replace(/^</, '').replace(/>$/, '').split('><')
-        };
-      } else {
-        return {
-          key,
-          type: 'single',
-          value: strToType(value)
-        };
-      }
+      return { key, value };
     });
+
+  return decodeURISegments(segments);
+}
+
+export function decodeURISegments(segments): MappedDataRef[] {
+  return segments.map(segment => {
+    const { key, value } = segment;
+
+    if (value.startsWith('~')) {
+      // Compatibility with the old array filter format.
+      return {
+        key: `${key}.inq`,
+        type: 'multiple',
+        value: value.replace(/^~/, '').split(/\s?,\s?/).map(v => strToType(v))
+      };
+    } else if (value.startsWith('[') && value.endsWith(']')) {
+      return {
+        key: `${key}.inq`,
+        type: 'multiple',
+        value: value.replace(/^\[/, '').replace(/]$/, '').split(/\s?,\s?/).map(v => strToType(v))
+      };
+    } else if (value.startsWith('<') && value.endsWith('>')) {
+      return {
+        key: `${key}.between`,
+        type: 'range',
+        value: value.replace(/^</, '').replace(/>$/, '').split('><')
+      };
+    } else {
+      return {
+        key,
+        type: 'single',
+        value: strToType(value)
+      };
+    }
+  });
+}
+
+export function decodeFiltersFromObject<T>(params): MetalQueryFilters<T> {
+  const segments = Object.entries(params).map(([key, value]) => {
+    return { key, value };
+  });
+  const refs = decodeURISegments(segments);
+  return buildQueryFilters(refs);
 }
 
 export function decodeModelURIFromURL(url?: string): MappedDataRef[] {
@@ -121,6 +155,10 @@ export function decodeModelURIFromURL(url?: string): MappedDataRef[] {
 
 export function decodeFiltersFromURL<T>(url?: string): MetalQueryFilters<T> {
   const refs = decodeModelURIFromURL(url);
+  return buildQueryFilters(refs);
+}
+
+export function buildQueryFilters<T>(refs): MetalQueryFilters<T> {
   const filters: MetalQueryFilters<T> = {};
 
   for (const ref of refs) {

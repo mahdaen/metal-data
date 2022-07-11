@@ -27,6 +27,8 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
   public href: string;
   /** Changes reference path **/
   public cref: string;
+  /** Form reference path **/
+  public fref?: string;
   public path: MetalPath;
   /** Mirrored data to check the changes **/
   public mirror: T;
@@ -246,6 +248,10 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
    * Reset the data to the initial state.
    */
   public reset(): this {
+    if (this.fref) {
+      this.collection.removeForm(this.fref);
+    }
+
     this.data = JSON.parse(JSON.stringify(this.mirror));
     this.dataChange.emit(this.data);
     this._writeCache();
@@ -284,8 +290,8 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
     return this;
   }
 
-  public params(key: string, value: any): this;
-  public params(params: MetalRequestParams): this;
+  public params<P>(key: keyof P | string, value: unknown): this;
+  public params(params: MetalRequestParams, merge?: boolean): this;
   /**
    * Apply single request params, or replace the current request params.
    * @param keyParams - String param name, or object params. Current params will be replaced if the argument is an object.
@@ -295,7 +301,15 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
     if (typeof keyParams === 'string') {
       _.set(this._options, `params.${keyParams}`, value);
     } else {
-      this._options.params = keyParams;
+      if (value) {
+        if (!this._options.params) {
+          this._options.params = {};
+        }
+
+        _.merge(this._options.params, keyParams);
+      } else {
+        this._options.params = keyParams as any;
+      }
     }
 
     return this;
@@ -368,7 +382,12 @@ export class MetalRecord<T extends MetalData, C extends MetalCollection<T> = Met
 
         try {
           const data = await this.collection.create(this.data, options);
+          this.id = data.id;
           this.assign(data);
+
+          if (this.fref) {
+            this.collection.removeForm(this.fref);
+          }
         } catch (error) {
           throw error;
         }

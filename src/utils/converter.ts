@@ -1,5 +1,7 @@
 import { typeOf } from './typeof';
 
+export const dateRegEx = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)((-(\d{2}):(\d{2})|Z)?)$/;
+
 /**
  * Convert string to a generic type such boolean, date, etc.
  * @param value
@@ -16,7 +18,7 @@ export function strToType(value: any) {
       return undefined;
     } else if (Number(value)) {
       return Number(value);
-    } else if (new Date(value).getTime()) {
+    } else if (dateRegEx.test(value)) {
       return new Date(value);
     } else {
       return value;

@@ -330,6 +330,10 @@ export class MetalOrigin<D extends MetalDriver = MetalDriver> {
       this.driver.transactions.push(transaction);
       this.driver.transactionChange.emit(transaction);
 
+      if (typeof this.beforeRequest === 'function') {
+        await this.beforeRequest(transaction);
+      }
+
       if (typeof this.driver.beforeTransaction === 'function') {
         await this.driver.beforeTransaction(transaction);
       }
@@ -351,6 +355,10 @@ export class MetalOrigin<D extends MetalDriver = MetalDriver> {
         };
 
         await next();
+      }
+
+      if (typeof this.afterRequest === 'function') {
+        await this.afterRequest(transaction);
       }
 
       if (typeof this.driver.afterTransaction === 'function') {
@@ -421,22 +429,29 @@ export class MetalOrigin<D extends MetalDriver = MetalDriver> {
     const { schemaValidation } = this.configs;
     const { request, response } = transaction;
     const { configs, listing } = request;
-    const { schemas, strict } = configs;
 
-    if (schemas) {
-      let validation;
+    if (configs) {
+      const { schemas, strict } = configs;
 
-      if (listing) {
-        validation = validateItemSchemas(schemas, (response.data as any).data, strict);
-      } else {
-        validation = validateSchemas(schemas, response.data, strict);
-      }
+      if (schemas) {
+        let validation;
 
-      if (schemaValidation === 'strict' && !validation._valid) {
-        throw new SchemaError(validation);
+        if (listing) {
+          validation = validateItemSchemas(schemas, (response.data as any).data, strict);
+        } else {
+          validation = validateSchemas(schemas, response.data, strict);
+        }
+
+        if (schemaValidation === 'strict' && !validation._valid) {
+          throw new SchemaError(validation);
+        }
       }
     }
   }
+
+  protected beforeRequest?<R>(transaction: MetalTransaction<R>): Promise<void>;
+
+  protected afterRequest?<R>(transaction: MetalTransaction<R>): Promise<void>;
 
   /**
    * Optional method to handle the errors.

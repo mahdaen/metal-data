@@ -1,3 +1,4 @@
+import { StateStore } from './state';
 import * as _ from 'lodash';
 import { Subscription, SubscriptionHandler } from 'metal-event-client';
 import {
@@ -21,7 +22,6 @@ import { filterToQueryParams, MetalQuery } from './query';
 import { MetalDataList, MetalRecord, MetalRecordList } from './record';
 import { MetalRequest, MetalTransaction, MetalTransactionError } from './request';
 import { SchemaError, validateSchemas } from './schema';
-import { StateStore } from './state';
 import { inherit } from './utils/object';
 import { typeOf } from './utils/typeof';
 
@@ -131,9 +131,22 @@ export class MetalCollection<T extends MetalData,
   public createForm(name = 'global', data?: T): MetalRecord<T, this> {
     if (!this.forms[name]) {
       this.forms[name] = new MetalRecord(this, null, data);
+      this.forms[name].fref = name;
+      this.forms[name].initialized = true;
+      this.forms[name].status = 'ready';
     }
 
     return this.forms[name];
+  }
+
+  /**
+   * Remove cached form from collection.
+   * @param name
+   */
+  public removeForm(name: string): void {
+    if (this.forms[name]) {
+      delete this.forms[name];
+    }
   }
 
   public async head(filters?: MetalQueryFilters<T>,
@@ -695,7 +708,7 @@ export class MetalCollection<T extends MetalData,
         for (const field of filters.fields) {
           if (typeOf(field) === 'object') {
             for (const [key, fields] of Object.entries(field)) {
-              if (typeOf(record[key]) === 'object') {
+              if (typeOf(record[key]) === 'object' || typeOf(record[key]) === 'array') {
                 this.selectFields(record[key], { fields });
                 selected[key] = record[key];
               }

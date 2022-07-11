@@ -241,19 +241,43 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
     return this;
   }
 
+  /**
+   * Assign new filter with key and value. Key can be a dot notation structure.
+   * @param key
+   * @param value
+   */
+  public where(key: string, value: unknown): this;
+  /**
+   * Replace the existing where filters with new filters.
+   * @param filters
+   */
   public where(filters: WhereFilter<T>): this;
-  public where(filters: WhereFilter<T>, fetch?: boolean): Promise<MetalRecordList<T>>;
+  public where(filters: WhereFilter<T>, fetch?: boolean, replace?: boolean): Promise<MetalRecordList<T>>;
   /**
    * Apply a new Where filter.
    * @param filters
    * @param fetch
+   * @param replace
    */
-  public where(filters: WhereFilter<T>, fetch?: boolean): this | Promise<MetalRecordList<T>> {
-    this.filters.where = filters;
-    if (fetch) {
-      return this.fetch();
+  public where(filters: string | WhereFilter<T>, fetch?: boolean, replace = true): this | Promise<MetalRecordList<T>> {
+    if (typeof filters === 'string') {
+      if (!this.filters.where) {
+        this.filters.where = {};
+      }
+
+      _.set(this.filters.where, filters, fetch);
     } else {
-      this.statusChange.emit(this);
+      if (replace) {
+        this.filters.where = filters;
+      } else {
+        _.merge(this.filters.where, filters);
+      }
+
+      if (fetch) {
+        return this.fetch();
+      } else {
+        this.statusChange.emit(this);
+      }
     }
 
     return this;
@@ -332,6 +356,39 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
     return this;
   }
 
+  /**
+   * Add or remove a request queryParam by providing a key and value.
+   * @param key Param key to add/remove.
+   * @param value Param value to add, or leave it to remove the param.
+   */
+  public param(key: string, value?: any): this;
+  /**
+   * Add or remove a request queryParam, and fetch the records.
+   * @param key Param key to add/remove.
+   * @param value Param value to add, or use `undefined` to remove.
+   * @param fetch Set true to fetch the records.
+   */
+  public param(key: string, value?: any, fetch?: boolean): Promise<MetalRecordList<T>>;
+  public param(key: string, value?: any, fetch?: boolean): this | Promise<MetalRecordList<T>> {
+    if (!this.filters.params) {
+      this.filters.params = {};
+    }
+
+    if (typeof value !== 'undefined') {
+      this.filters.params[key] = value;
+    } else {
+      delete this.filters.params[key];
+    }
+
+    if (fetch) {
+      return this.fetch();
+    } else {
+      this.statusChange.emit(this);
+    }
+
+    return this;
+  }
+
   public params<P extends MetalRequestParams = MetalRequestParams>(params: P): this;
   public params<P extends MetalRequestParams = MetalRequestParams>(params: P, fetch?: boolean): Promise<MetalRecordList<T>>;
   /**
@@ -369,6 +426,26 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
     return this;
   }
 
+  public resetFilter(): this {
+    delete this.filters.where;
+    this.filters.page = 1;
+    this.filters.limit = this.collection.configs.defaultLimit || 25;
+
+    delete this.filters.orderBy;
+    delete this.filters.search;
+
+    const initCache = Object.keys(this._caches)[0];
+    const cache = this._caches[initCache];
+
+    if (cache && cache.records) {
+      this.records = cache.records;
+      this.meta = cache.transaction.response.data.meta;
+    }
+
+    this._writeCaches();
+    return this;
+  }
+
   public async head(override?: boolean): Promise<MetalDataMeta>;
   public async head(options?: MetalFindOptions<T>, override?: boolean): Promise<MetalDataMeta>;
   /**
@@ -379,7 +456,7 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
   public async head(options?: MetalFindOptions<T> | boolean, override?: boolean): Promise<MetalDataMeta> {
     try {
       const meta = await this.collection.head(this.filters, {
-        ...this.options,
+        ...this.options as any,
         ...(typeof options === 'object' ? options : {}),
         referrer: {
           query: this
@@ -428,7 +505,7 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
       }
 
       const trx = await this.collection.find(this.filters, {
-        ...this.options,
+        ...this.options as any,
         ...options,
         referrer: {
           query: this,
@@ -515,7 +592,7 @@ export class MetalQuery<T extends MetalData, C extends MetalCollection<T> = Meta
             page: 1,
           },
           {
-            ...this.options,
+            ...this.options as any,
             ...options,
             referrer: {
               query: this
