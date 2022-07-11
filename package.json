@@ -10,9 +10,9 @@
     "build": "npx rimraf ./dist && npx tsc --module esnext",
     "build:cjs": "npx rimraf ./dist && npx tsc --module commonjs",
     "push": "npm run docs && git add --all && git commit -m \"Docs\" && git push",
-    "patch": "npm version patch && npm publish --access public && npm run push",
-    "minor": "npm version minor && npm publish --access public && npm run push",
-    "major": "npm version major && npm publish --access public && npm run push",
+    "patch": "npm run prepublish && npm version patch && npm publish --access public && npm run push",
+    "minor": "npm run prepublish && npm version minor && npm publish --access public && npm run push",
+    "major": "npm run prepublish && npm version major && npm publish --access public && npm run push",
     "docs": "npx typedoc src/index.ts --out docs --name \"Metal Data\" --readme ./readme.md --excludePrivate"
   },
   "keywords": [
